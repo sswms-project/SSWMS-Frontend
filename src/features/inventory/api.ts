@@ -1,24 +1,29 @@
-import { baseApi } from '@/services/base-api'
+import { useQuery } from '@tanstack/react-query'
+import { axiosClient } from '@/lib/axios'
+import { queryKeys } from '@/lib/query-keys'
 import type { ApiResponse, QueryInfo, QueryResult } from '@/types/api'
 import type { InventoryItem, InventoryTransaction } from './types'
 
-export const inventoryApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    getInventory: builder.query<ApiResponse<QueryResult<InventoryItem>>, QueryInfo | void>({
-      query: (params) => ({
-        url: '/inventory',
-        params: params ?? undefined,
-      }),
-      providesTags: ['Inventory'],
-    }),
-    getInventoryTransactions: builder.query<ApiResponse<QueryResult<InventoryTransaction>>, QueryInfo | void>({
-      query: (params) => ({
-        url: '/inventory/transactions',
-        params: params ?? undefined,
-      }),
-      providesTags: ['Inventory', 'AuditLog'],
-    }),
-  }),
-})
+const getInventory = (params?: QueryInfo) =>
+  axiosClient
+    .get<ApiResponse<QueryResult<InventoryItem>>>('/inventory', { params })
+    .then((r) => r.data)
 
-export const { useGetInventoryQuery, useGetInventoryTransactionsQuery } = inventoryApi
+const getInventoryTransactions = (params?: QueryInfo) =>
+  axiosClient
+    .get<ApiResponse<QueryResult<InventoryTransaction>>>('/inventory/transactions', { params })
+    .then((r) => r.data)
+
+export function useGetInventoryQuery(params?: QueryInfo) {
+  return useQuery({
+    queryKey: queryKeys.inventory.list(params),
+    queryFn: () => getInventory(params),
+  })
+}
+
+export function useGetInventoryTransactionsQuery(params?: QueryInfo) {
+  return useQuery({
+    queryKey: queryKeys.inventory.transactions(params),
+    queryFn: () => getInventoryTransactions(params),
+  })
+}

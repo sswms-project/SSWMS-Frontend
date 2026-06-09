@@ -1,17 +1,17 @@
-import { baseApi } from '@/services/base-api'
+import { useQuery } from '@tanstack/react-query'
+import { axiosClient } from '@/lib/axios'
+import { queryKeys } from '@/lib/query-keys'
 import type { ApiResponse, QueryInfo, QueryResult } from '@/types/api'
 import type { Warehouse } from './types'
 
-export const warehouseApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    getWarehouses: builder.query<ApiResponse<QueryResult<Warehouse>>, QueryInfo | void>({
-      query: (params) => ({
-        url: '/warehouses',
-        params: params ?? undefined,
-      }),
-      providesTags: ['Warehouse'],
-    }),
-  }),
-})
+const getWarehouses = (params?: QueryInfo) =>
+  axiosClient
+    .get<ApiResponse<QueryResult<Warehouse>>>('/warehouses', { params })
+    .then((r) => r.data)
 
-export const { useGetWarehousesQuery } = warehouseApi
+export function useGetWarehousesQuery(params?: QueryInfo) {
+  return useQuery({
+    queryKey: queryKeys.warehouses.list(params),
+    queryFn: () => getWarehouses(params),
+  })
+}

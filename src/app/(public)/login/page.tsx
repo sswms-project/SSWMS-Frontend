@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LogIn } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { Button } from '@/components/atoms/button'
+import { Button } from '@/components/ui/button'
 import { loginSchema, type LoginFormValues } from '@/features/auth/schemas/login.schema'
 
 export default function LoginPage() {
@@ -41,7 +41,9 @@ export default function LoginPage() {
               className="mt-2 h-10 w-full rounded-md border border-slate-300 px-3 text-slate-950 outline-none focus:border-emerald-700"
               {...register('tenantCode')}
             />
-            {errors.tenantCode && <span className="mt-1 block text-xs text-red-600">{errors.tenantCode.message}</span>}
+            {errors.tenantCode && (
+              <span className="mt-1 block text-xs text-red-600">{errors.tenantCode.message}</span>
+            )}
           </label>
           <label className="block text-sm font-medium text-slate-700">
             Email
@@ -50,7 +52,9 @@ export default function LoginPage() {
               className="mt-2 h-10 w-full rounded-md border border-slate-300 px-3 text-slate-950 outline-none focus:border-emerald-700"
               {...register('email')}
             />
-            {errors.email && <span className="mt-1 block text-xs text-red-600">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="mt-1 block text-xs text-red-600">{errors.email.message}</span>
+            )}
           </label>
           <label className="block text-sm font-medium text-slate-700">
             Password
@@ -59,7 +63,9 @@ export default function LoginPage() {
               className="mt-2 h-10 w-full rounded-md border border-slate-300 px-3 text-slate-950 outline-none focus:border-emerald-700"
               {...register('password')}
             />
-            {errors.password && <span className="mt-1 block text-xs text-red-600">{errors.password.message}</span>}
+            {errors.password && (
+              <span className="mt-1 block text-xs text-red-600">{errors.password.message}</span>
+            )}
           </label>
         </div>
         <Button type="submit" className="mt-6 w-full" disabled={isSubmitting}>

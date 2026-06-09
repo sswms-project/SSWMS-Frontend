@@ -1,18 +1,11 @@
-import { baseApi } from '@/services/base-api'
+import { useMutation } from '@tanstack/react-query'
+import { axiosClient } from '@/lib/axios'
 import type { ApiResponse } from '@/types/api'
 import type { LoginRequestDto, LoginResponseDto } from './types'
 
-export const authApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    login: builder.mutation<ApiResponse<LoginResponseDto>, LoginRequestDto>({
-      query: (body) => ({
-        url: '/auth/login',
-        method: 'POST',
-        body,
-      }),
-      invalidatesTags: ['Auth'],
-    }),
-  }),
-})
+const login = (body: LoginRequestDto) =>
+  axiosClient.post<ApiResponse<LoginResponseDto>>('/auth/login', body).then((r) => r.data)
 
-export const { useLoginMutation } = authApi
+export function useLoginMutation() {
+  return useMutation({ mutationFn: login })
+}
