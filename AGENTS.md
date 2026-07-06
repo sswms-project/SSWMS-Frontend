@@ -14,4 +14,6 @@ When implementing Stitch designs, always reuse existing components from `src/com
 
 Before creating branches, commits, merges, or pushes, read `docs/GIT_WORKFLOW.md` and follow the repository Git workflow.
 
+Before using frontend design skills or implementing screens from Stitch, read `docs/AI_WORKFLOW.md` and follow its skill selection rules.
+
 <!-- END:nextjs-agent-rules -->
