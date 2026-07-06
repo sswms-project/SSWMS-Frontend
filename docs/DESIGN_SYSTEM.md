@@ -132,6 +132,16 @@ The palette is engineered for a data-heavy enterprise environment.
 - **Neutral Greys** are used for secondary text and borders to maintain a low-noise interface.
 - **Status Colors** use standard semantic mappings to ensure immediate recognition of warehouse alerts and inventory health.
 
+## Token Usage
+
+The color palette above must be implemented through Tailwind design tokens defined in `src/app/index.css`.
+
+- Read `src/app/index.css` before styling any UI.
+- Use semantic Tailwind classes such as `bg-background`, `text-foreground`, `border-border`, `bg-primary`, `text-primary-foreground`, `text-muted-foreground`, and `text-destructive` when available.
+- Do not hard-code design-system colors directly in React components, pages, or feature code.
+- If a color from this design system is not available as a Tailwind token, add a semantic token in `src/app/index.css` before using it.
+- Keep token names semantic and role-based, not page-specific. Prefer `primary`, `secondary`, `muted`, `border`, or `destructive` over names such as `registerButtonBlue`.
+
 ## Typography
 
 Inter is the workhorse of this design system, chosen for its exceptional legibility in data tables and small-scale UI labels.

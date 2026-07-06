@@ -6,6 +6,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Before implementing UI, read `docs/DESIGN_SYSTEM.md` and follow its visual system.
 
+Before styling UI, read `src/app/index.css` and use Tailwind design tokens instead of hard-coded color values.
+
 Before implementing or refactoring code, read `docs/CODING_GUIDELINES.md` and follow its structure, reuse, clean code, and abstraction rules.
 
 When using Stitch HTML from `docs/stitch-designs/`, treat it as a visual reference and implement the screen as a functional Next.js feature with API integration, state handling, validation, navigation, and working interactions.

@@ -145,6 +145,28 @@ utils
 - Extract repeated field composition when a form has multiple fields with the same label, input, and error pattern.
 - Disable submit actions while a mutation is pending to prevent duplicate submissions.
 
+## Tailwind And Design Tokens
+
+- Before styling UI, read `src/app/index.css` to understand the available CSS variables and Tailwind theme tokens.
+- Use Tailwind CSS utility classes for layout, spacing, typography, color, border, radius, focus, and responsive behavior.
+- Prefer semantic Tailwind token classes such as `bg-background`, `text-foreground`, `border-border`, `bg-primary`, `text-primary-foreground`, `text-muted-foreground`, `ring-ring`, and `text-destructive` when those tokens exist.
+- Do not hard-code hex, RGB, HSL, OKLCH, or named color values inside component class names when the color belongs to the design system.
+- If a design-system color is needed but no Tailwind token exists yet, add a semantic token in `src/app/index.css` first, then use that token from the component.
+- Do not scatter one-off arbitrary color classes such as `bg-[#00677d]`, `text-[#171c1e]`, or `border-[#bdc8cd]` across feature code.
+- Raw color values are allowed only for truly one-off visuals, and the reason must be obvious from the context.
+
+Avoid:
+
+```tsx
+className = 'bg-[#00677d] text-[#171c1e] border-[#bdc8cd]'
+```
+
+Prefer:
+
+```tsx
+className = 'bg-primary text-primary-foreground border-border'
+```
+
 ## Reuse Rules
 
 Before creating new code, check in this order:
@@ -192,6 +214,7 @@ Before finishing a feature, verify:
 
 - Existing components, hooks, services, schemas, and utils were reused where appropriate.
 - No duplicated API calls, form validation, or UI primitives were introduced.
+- Styling uses Tailwind tokens from `src/app/index.css` instead of hard-coded design-system colors.
 - Loading, error, empty, success, and disabled states are handled.
 - Components are split by responsibility.
 - Business logic is not buried inside visual-only components.
