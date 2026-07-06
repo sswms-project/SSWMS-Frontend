@@ -10,4 +10,6 @@ When using Stitch HTML from `docs/stitch-designs/`, treat it as a visual referen
 
 When implementing Stitch designs, always reuse existing components from `src/components/ui` before creating new UI primitives.
 
+Before creating branches, commits, merges, or pushes, read `docs/GIT_WORKFLOW.md` and follow the repository Git workflow.
+
 <!-- END:nextjs-agent-rules -->
