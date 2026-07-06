@@ -1,13 +1,46 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6fafc;
+  --foreground: #171c1e;
+  --card: #ffffff;
+  --card-foreground: #171c1e;
+  --popover: #ffffff;
+  --popover-foreground: #171c1e;
+  --primary: #00677d;
+  --primary-foreground: #ffffff;
+  --secondary: #42636f;
+  --secondary-foreground: #ffffff;
+  --muted: #f0f4f6;
+  --muted-foreground: #3e484c;
+  --accent: #c5e8f6;
+  --accent-foreground: #003f4d;
+  --destructive: #ba1a1a;
+  --border: #bdc8cd;
+  --input: #bdc8cd;
+  --ring: #00677d;
+  --radius: 0.25rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
