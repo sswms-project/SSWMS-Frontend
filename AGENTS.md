@@ -4,6 +4,8 @@
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 
+Before coding, read `.rules` for baseline React rules and `docs/CODING_GUIDELINES.md` for project-specific structure, reuse, shadcn/ui, and clean code rules.
+
 Before implementing UI, read `docs/DESIGN_SYSTEM.md` and follow its visual system.
 
 Before styling UI, read `src/app/index.css` and use Tailwind design tokens instead of hard-coded color values.

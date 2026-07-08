@@ -275,19 +275,9 @@ export function RegisterForm() {
                               className="text-muted-foreground block text-sm leading-5"
                             >
                               Tôi đồng ý với{' '}
-                              <Link
-                                href="#"
-                                className="text-primary font-semibold underline-offset-4 hover:underline"
-                              >
-                                Điều khoản Dịch vụ
-                              </Link>{' '}
+                              <span className="text-primary font-semibold">Điều khoản Dịch vụ</span>{' '}
                               và{' '}
-                              <Link
-                                href="#"
-                                className="text-primary font-semibold underline-offset-4 hover:underline"
-                              >
-                                Chính sách Bảo mật
-                              </Link>{' '}
+                              <span className="text-primary font-semibold">Chính sách Bảo mật</span>{' '}
                               của SSWMS.
                             </FieldLabel>
                             <FieldError>{errors.acceptTerms?.message}</FieldError>
