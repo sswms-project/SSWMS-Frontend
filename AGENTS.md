@@ -10,6 +10,10 @@ Before styling UI, read `src/app/index.css` and use Tailwind design tokens inste
 
 Before implementing or refactoring code, read `docs/CODING_GUIDELINES.md` and follow its structure, reuse, clean code, and abstraction rules.
 
+When building UI, use existing shadcn/ui primitives from `src/components/ui` first. Do not invent custom primitives or div-only controls when an accessible component already exists.
+
+If a required shadcn/ui primitive is missing from `src/components/ui`, install it with the shadcn CLI before implementing a custom replacement.
+
 When using Stitch HTML from `docs/stitch-designs/`, treat it as a visual reference and implement the screen as a functional Next.js feature with API integration, state handling, validation, navigation, and working interactions.
 
 When implementing Stitch designs, always reuse existing components from `src/components/ui` before creating new UI primitives.

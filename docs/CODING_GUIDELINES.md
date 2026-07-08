@@ -66,6 +66,22 @@ Avoid:
 One 500-line component that handles layout, API calls, validation, field rendering, and every success/error state inline.
 ```
 
+## UI Primitive Rules
+
+- Use existing shadcn/ui primitives from `src/components/ui` before creating custom UI.
+- If a required shadcn/ui primitive is missing from `src/components/ui`, add it with the shadcn CLI before hand-coding a replacement:
+
+```bash
+pnpm dlx shadcn@latest add <component-name>
+```
+
+- Do not recreate Button, Input, Textarea, Checkbox, Select, Combobox, Card, Alert, Dialog, Sheet, Drawer, Popover, Tooltip, Tabs, Badge, Table, DataTable, Pagination, Calendar, or Form primitives with raw HTML.
+- Do not create custom component primitives just because a screen design looks slightly different. Extend the existing primitive with props, variants, composition, or feature-level wrappers first.
+- Avoid div-only interactions. Use semantic HTML or accessible shadcn/ui components.
+- Use `<button>` for actions, `Link` or `<a>` for navigation, real form controls for inputs, and table elements or `DataTable` for tabular data.
+- Use `div` for layout and grouping only. Do not use `div` as a fake button, fake input, fake select, fake tab, fake checkbox, fake link, or clickable table row.
+- If an existing shadcn/ui primitive cannot support the required behavior, document the gap in the feature code and keep the new component narrowly scoped.
+
 ## Hooks
 
 - Use hooks to reuse stateful behavior, browser behavior, or feature workflows.
@@ -213,6 +229,8 @@ Do not create an abstraction when:
 Before finishing a feature, verify:
 
 - Existing components, hooks, services, schemas, and utils were reused where appropriate.
+- Existing shadcn/ui primitives from `src/components/ui` were used before creating custom UI.
+- No div-only controls or fake interactive elements were introduced.
 - No duplicated API calls, form validation, or UI primitives were introduced.
 - Styling uses Tailwind tokens from `src/app/index.css` instead of hard-coded design-system colors.
 - Loading, error, empty, success, and disabled states are handled.
