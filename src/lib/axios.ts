@@ -6,7 +6,18 @@ type PendingRequest = {
   reject: (error: unknown) => void
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000/api'
+const normalizeApiBaseUrl = (baseUrl: string) => {
+  const normalizedBaseUrl = baseUrl.replace(/\/+$/, '')
+
+  return normalizedBaseUrl.endsWith('/api') ? normalizedBaseUrl : `${normalizedBaseUrl}/api`
+}
+
+const API_BASE_URL = normalizeApiBaseUrl(
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+    process.env.NEXT_API_BASE_URL ??
+    process.env.NEXT_PUBLIC_API_URL ??
+    'http://localhost:7070'
+)
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
