@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { QueryProvider } from '@/providers/query-provider'
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="vi" className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <QueryProvider>{children}</QueryProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
