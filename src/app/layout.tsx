@@ -1,17 +1,17 @@
 import { QueryProvider } from '@/providers/query-provider'
 import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './index.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin', 'vietnamese'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const jetBrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin', 'vietnamese'],
 })
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="vi" className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <QueryProvider>{children}</QueryProvider>
         <Toaster richColors position="top-right" />
