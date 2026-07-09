@@ -1,0 +1,89 @@
+'use client'
+
+import * as React from 'react'
+import { ArrowLeft, ShieldCheck, Warehouse } from 'lucide-react'
+import Link from 'next/link'
+import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import type { ApiErrorResponse } from '@/types/api'
+import { useVerifyEmailQuery } from '../hooks/use-auth'
+import {
+  ErrorState,
+  LoadingState,
+  MissingTokenState,
+  SuccessState,
+} from '../components/VerifyEmailPage'
+
+interface VerifyEmailPageProps {
+  readonly token?: string
+}
+
+function getApiErrorMessage(error: ApiErrorResponse | null) {
+  return error?.message ?? 'Không thể xác minh email. Vui lòng thử lại sau.'
+}
+
+export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
+  const verifyEmailQuery = useVerifyEmailQuery(token)
+  const errorMessage = getApiErrorMessage(verifyEmailQuery.error)
+  const successMessage = verifyEmailQuery.data?.data
+
+  React.useEffect(() => {
+    if (!verifyEmailQuery.error) return
+    console.error(verifyEmailQuery.error)
+    toast.error(getApiErrorMessage(verifyEmailQuery.error))
+  }, [verifyEmailQuery.error])
+
+  return (
+    <main className="bg-background text-foreground min-h-[100dvh]">
+      <header className="border-border bg-background/90 border-b px-4 backdrop-blur-md md:px-6">
+        <div className="mx-auto flex h-16 max-w-[960px] items-center justify-between">
+          <Link href="/" className="text-primary flex items-center gap-2" aria-label="SSWMS">
+            <Warehouse className="size-7" aria-hidden="true" />
+            <span className="text-xl font-bold tracking-tight">SSWMS</span>
+          </Link>
+          <Button
+            asChild
+            variant="ghost"
+            className="text-primary hover:bg-muted h-9 rounded-md px-3 text-xs font-semibold"
+          >
+            <Link href="/login">
+              <ArrowLeft className="size-4" aria-hidden="true" />
+              Đăng nhập
+            </Link>
+          </Button>
+        </div>
+      </header>
+
+      <section className="mx-auto grid w-full max-w-[960px] grid-cols-1 gap-4 px-4 py-8 md:grid-cols-[1fr_320px] md:px-6 md:py-14">
+        <Card className="border-border bg-card rounded-lg border py-0 shadow-sm">
+          <CardContent className="px-5 py-8 md:px-10 md:py-10">
+            {!token ? (
+              <MissingTokenState />
+            ) : verifyEmailQuery.isPending ? (
+              <LoadingState />
+            ) : verifyEmailQuery.isSuccess && successMessage ? (
+              <SuccessState message={successMessage} />
+            ) : (
+              <ErrorState message={errorMessage} />
+            )}
+          </CardContent>
+        </Card>
+
+        <aside className="border-border bg-card rounded-lg border p-5">
+          <div className="bg-accent text-primary flex size-10 items-center justify-center rounded-md">
+            <ShieldCheck className="size-5" aria-hidden="true" />
+          </div>
+          <h2 className="text-foreground mt-4 text-sm font-semibold">Bảo vệ workspace</h2>
+          <p className="text-muted-foreground mt-2 text-sm leading-6">
+            Email xác minh giúp SSWMS đảm bảo người tạo tenant là chủ sở hữu hợp lệ trước khi kích
+            hoạt tài khoản vận hành.
+          </p>
+          <div className="border-border bg-muted text-muted-foreground mt-5 rounded-md border p-3 text-xs leading-5">
+            Link xác minh được backend cấp sau khi đăng ký và có thời hạn 15 phút.
+          </div>
+        </aside>
+      </section>
+    </main>
+  )
+}

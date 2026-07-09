@@ -1,5 +1,5 @@
-import { OperationsDashboard } from '@/features/dashboard/components/operations-dashboard'
+import { AuthTestPanel } from '@/features/auth/components/DashboardPage'
 
 export default function DashboardPage() {
-  return <OperationsDashboard />
+  return <AuthTestPanel />
 }

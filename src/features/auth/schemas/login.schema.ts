@@ -1,9 +1,8 @@
 import { z } from 'zod'
 
 export const loginSchema = z.object({
-  tenantCode: z.string().min(2, 'Tenant code is required'),
-  email: z.string().email('Enter a valid email'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  email: z.string().email('Nhập email hợp lệ'),
+  password: z.string().min(8, 'Mật khẩu phải có ít nhất 8 ký tự'),
 })
 
 export type LoginFormValues = z.infer<typeof loginSchema>

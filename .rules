@@ -18,21 +18,39 @@
 | Types | `kebab-case.types.ts` |
 
 ## Exports
-- **Pages only**: Default Export (required for `React.lazy()`).
+- **Next.js route files** (`app/.../page.tsx`): Default Export only — thin wrapper, no logic.
+- **Feature page components** (`features/.../pages/`): Named Export.
 - **Everything else**: Named Export.
 
 ## Folder Structure
 ```
 src/features/<feature>/
-├── pages/       # Default exports, lazy-loaded
-├── components/  # Feature UI components
-├── hooks/       # React Query hooks
-├── services/    # Axios wrappers (plain objects)
-├── schemas/     # Zod schemas
-├── types/       # TypeScript types
+├── pages/                    # Page orchestrators: data fetching, state, navigation
+│   ├── index.ts              # Re-exports all page components
+│   └── LoginPage.tsx         # Named export; calls hooks, owns business logic
+├── components/
+│   └── <PageName>/           # Sub-components scoped to that page (UI only, receive props)
+│       ├── index.ts          # Re-exports all sub-components in this folder
+│       └── LoginForm.tsx     # No direct API calls; all data via props
+├── hooks/                    # React Query hooks (use-kebab-case.ts)
+├── services/                 # Axios wrappers as plain objects (kebab-case.service.ts)
+├── schemas/                  # Zod schemas (kebab-case.schema.ts)
+└── types/                    # TypeScript types (kebab-case.types.ts)
 ```
-Shared primitives → `src/components/ui/`
+
+**Page orchestrators** (`pages/`) own: mutations/queries, form submission handlers, navigation, global state writes. Named exports. Always add to `pages/index.ts`.
+
+**Page sub-components** (`components/<PageName>/`) are UI-only: receive data and callbacks via props, no direct hook/service calls except when isolated logic demands it (e.g. a self-contained query widget). Named exports. Always add to `components/<PageName>/index.ts`.
+
+**Imports**: Always import from the folder index, not individual files — `from '../components/LoginPage'` not `from '../components/LoginPage/LoginForm'`.
+
+**Next.js route files** (`app/.../page.tsx`) are thin wrappers — default export, no business logic, just `return <FeaturePage />` or passes route params as props.
+
+**shadcn/ui is mandatory.** Always use primitives from `src/components/ui/` first. Never build custom div-only controls when an accessible shadcn component exists. If the needed component is missing, install it via the shadcn CLI before writing a custom replacement.
 Zustand stores → `src/stores/`
+App-wide config constants (roles, permissions, etc.) → `src/config/`
+
+**Roles**: `src/config/roles.ts` is the single source of truth for `UserRole` type and `USER_ROLES` constant. Never redefine roles elsewhere — always import from `@/config/roles`.
 
 ## Error Handling
 - Never swallow errors silently.
