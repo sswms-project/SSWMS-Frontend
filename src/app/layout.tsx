@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}>
+    <html
+      lang="vi"
+      className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <QueryProvider>{children}</QueryProvider>
         <Toaster richColors position="top-right" />

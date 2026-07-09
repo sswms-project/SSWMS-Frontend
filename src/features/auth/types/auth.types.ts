@@ -1,4 +1,4 @@
-export type UserRole = 'Owner' | 'WarehouseManager' | 'Staff' | 'TransportStaff'
+import type { UserRole } from '@/config/roles'
 
 export interface AuthUser {
   id: string
@@ -12,13 +12,14 @@ export interface AuthUser {
 export interface LoginRequestDto {
   email: string
   password: string
-  tenantCode: string
 }
 
 export interface LoginResponseDto {
   accessToken: string
   refreshToken: string
-  user: AuthUser
+  expiresIn: number
+  requires2FA: boolean
+  tempToken: string | null
 }
 
 export interface RegisterRequestDto {
