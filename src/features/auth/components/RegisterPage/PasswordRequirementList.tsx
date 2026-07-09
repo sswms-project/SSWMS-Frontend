@@ -9,7 +9,7 @@ export function PasswordRequirementList({ password }: PasswordRequirementListPro
   return (
     <div aria-live="polite">
       <p className="text-foreground mb-2 font-semibold">Mật khẩu cần đáp ứng:</p>
-      <ul className="grid gap-1.5 sm:grid-cols-2">
+      <ul className="grid gap-1 sm:grid-cols-2">
         {passwordRequirements.map((requirement) => {
           const isMet = requirement.validate(password)
           const Icon = isMet ? CheckCircle2 : Circle

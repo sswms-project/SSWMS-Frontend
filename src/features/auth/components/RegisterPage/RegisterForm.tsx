@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight, Loader2 } from 'lucide-react'
 import { Controller, useForm, useWatch } from 'react-hook-form'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
@@ -49,26 +50,25 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
 
   return (
     <Card className="border-border bg-card rounded-lg border py-0 shadow-sm">
-      <CardContent className="flex flex-1 flex-col px-5 py-6 md:px-10 md:py-8">
-        <header className="mb-7">
-          <Badge variant="outline" className="border-primary/40 text-primary mb-2">
+      <CardContent className="flex flex-1 flex-col px-5 py-5 md:px-6 md:py-4">
+        <header className="mb-3">
+          <Badge variant="outline" className="border-primary/40 text-primary mb-1.5">
             Tạo tenant owner
           </Badge>
-          <h1 className="text-foreground mt-2 text-2xl leading-8 font-semibold">
+          <h1 className="text-foreground mt-1.5 text-xl leading-7 font-semibold md:text-2xl md:leading-8">
             Đăng ký tài khoản hệ thống
           </h1>
-          <CardDescription className="mt-2 max-w-xl text-sm leading-6">
+          <CardDescription className="mt-1.5 max-w-xl text-sm leading-5">
             Cung cấp thông tin doanh nghiệp và người đại diện để khởi tạo workspace SSWMS.
           </CardDescription>
         </header>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5 md:grid-cols-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-3.5 md:grid-cols-2 md:gap-2.5">
           <TextField
             id="tenantName"
             label="Tên doanh nghiệp / Kho hàng"
             placeholder="Warehouse Solution Vietnam"
             error={errors.tenantName?.message}
-            className="md:col-span-2"
             {...register('tenantName')}
           />
           <TextField
@@ -92,7 +92,6 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
             placeholder="admin@domain.com"
             type="email"
             error={errors.email?.message}
-            className="md:col-span-2"
             {...register('email')}
           />
           <Field className="md:col-span-2" data-invalid={Boolean(errors.address)}>
@@ -103,7 +102,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
               id="address"
               placeholder="123 Nguyễn Huệ, TP.HCM"
               aria-invalid={Boolean(errors.address)}
-              className="border-border bg-card text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-primary/20 min-h-20 rounded-md px-3 py-2.5 text-sm"
+              className="border-border bg-card text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-primary/20 min-h-10 rounded-md px-3 py-2 text-sm"
               {...register('address')}
             />
             <FieldError>{errors.address?.message}</FieldError>
@@ -127,15 +126,15 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
             {...register('confirmPassword')}
           />
 
-          <Card size="sm" className="border-border bg-muted rounded-md md:col-span-2">
-            <CardContent className="text-muted-foreground space-y-3 text-xs leading-5">
+          <Alert className="border-border bg-muted rounded-md md:col-span-2">
+            <AlertDescription className="text-muted-foreground space-y-2 text-xs leading-5">
               <PasswordRequirementList password={passwordValue} />
               <ConfirmPasswordHint
                 password={passwordValue}
                 confirmPassword={confirmPasswordValue}
               />
-            </CardContent>
-          </Card>
+            </AlertDescription>
+          </Alert>
 
           <Controller
             control={control}
@@ -169,7 +168,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
             )}
           />
 
-          <div className="flex flex-col gap-3 pt-2 md:col-span-2 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 pt-1 md:col-span-2 md:flex-row md:items-center md:justify-between">
             <small className="text-muted-foreground text-xs leading-5">
               Sau khi đăng ký, hệ thống sẽ gửi email xác minh có hiệu lực trong 15 phút.
             </small>
@@ -177,7 +176,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
               type="submit"
               size="lg"
               disabled={isLoading}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-5 text-sm font-semibold active:scale-[0.98] md:min-w-44"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 rounded-md px-5 text-sm font-semibold active:scale-[0.98] md:min-w-44"
             >
               {isLoading ? (
                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />

@@ -53,9 +53,9 @@ export function RegisterPage() {
         </div>
       </header>
 
-      <section className="mx-auto grid w-full max-w-[1100px] grid-cols-1 items-start gap-6 px-4 py-6 md:grid-cols-12 md:px-6 md:py-8">
+      <section className="mx-auto grid w-full max-w-[1100px] grid-cols-1 items-start gap-5 px-4 py-5 md:min-h-[calc(100dvh-4.25rem)] md:grid-cols-12 md:items-center md:px-6 md:py-4">
         <aside
-          className="hidden md:col-span-5 md:flex md:flex-col md:gap-4"
+          className="hidden md:col-span-5 md:flex md:flex-col md:gap-3"
           aria-label="SSWMS benefits"
         >
           <BenefitsPanel />

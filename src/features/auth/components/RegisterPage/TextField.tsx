@@ -17,7 +17,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         id={id}
         ref={ref}
         aria-invalid={Boolean(error)}
-        className="border-border bg-card text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-primary/20 h-11 rounded-md px-3 text-sm"
+        className="border-border bg-card text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-primary/20 h-10 rounded-md px-3 text-sm"
         {...props}
       />
       <FieldError>{error}</FieldError>

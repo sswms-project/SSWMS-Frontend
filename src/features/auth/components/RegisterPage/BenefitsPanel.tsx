@@ -16,7 +16,7 @@ interface BenefitCardProps {
 function BenefitCard({ icon: Icon, title, description, accent = false }: BenefitCardProps) {
   return (
     <Card className="rounded-lg">
-      <CardContent className="pt-5">
+      <CardContent className="p-4">
         <Icon
           className={accent ? 'text-secondary size-5' : 'text-primary size-5'}
           aria-hidden="true"
@@ -31,7 +31,7 @@ function BenefitCard({ icon: Icon, title, description, accent = false }: Benefit
 export function BenefitsPanel() {
   return (
     <>
-      <Card className="relative flex min-h-[360px] flex-1 overflow-hidden rounded-lg">
+      <Card className="relative flex min-h-[280px] flex-1 overflow-hidden rounded-lg xl:min-h-[320px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${warehouseVisualUrl})` }}
@@ -39,18 +39,18 @@ export function BenefitsPanel() {
           aria-label="Kho hàng tự động hiện đại với ánh sáng xanh cyan"
         />
         <div className="from-primary/90 via-primary/30 absolute inset-0 bg-gradient-to-t to-transparent" />
-        <footer className="text-primary-foreground relative mt-auto p-8">
-          <Badge className="bg-primary-foreground/15 text-primary-foreground mb-3 rounded-md border-0 backdrop-blur-sm">
+        <footer className="text-primary-foreground relative mt-auto p-5 xl:p-6">
+          <Badge className="bg-primary-foreground/15 text-primary-foreground mb-2 rounded-md border-0 backdrop-blur-sm">
             Operational Intelligence
           </Badge>
           <h2 className="text-2xl leading-8 font-semibold">Quản trị kho bãi thế hệ mới</h2>
-          <CardDescription className="text-primary-foreground/90 mt-3 max-w-sm text-sm leading-6">
+          <CardDescription className="text-primary-foreground/90 mt-2 max-w-sm text-sm leading-5">
             Nền tảng vận hành tập trung giúp kiểm soát tồn kho, vận chuyển và nhân sự trong một giao
             diện thống nhất.
           </CardDescription>
         </footer>
       </Card>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-3">
         <BenefitCard
           icon={ShieldCheck}
           title="Bảo mật đa tầng"
