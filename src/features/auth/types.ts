@@ -20,3 +20,18 @@ export interface LoginResponseDto {
   refreshToken: string
   user: AuthUser
 }
+
+export interface RegisterRequestDto {
+  tenantName: string
+  ownerName: string
+  phone: string
+  email: string
+  address: string
+  password: string
+  confirmPassword: string
+  acceptTerms: boolean
+}
+
+export type RegisterResponseDto = string
+
+export type VerifyEmailResponseDto = string

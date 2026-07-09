@@ -1,5 +1,6 @@
-import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Toaster } from '@/components/ui/sonner'
 import { QueryProvider } from '@/providers/query-provider'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './index.css'
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="vi" className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <QueryProvider>{children}</QueryProvider>
+        <Toaster richColors position="top-right" />
         <SpeedInsights />
       </body>
     </html>
