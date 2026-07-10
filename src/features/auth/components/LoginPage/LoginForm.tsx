@@ -131,7 +131,7 @@ export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
                     type={showPassword ? 'text' : 'password'}
                     aria-invalid={Boolean(errors.password)}
                     autoComplete="current-password"
-                    className="bg-card h-12 rounded-md pr-10 pl-3 text-sm transition-shadow"
+                    className="bg-card h-10 rounded-md pr-10 pl-3 text-sm transition-shadow"
                     {...register('password')}
                   />
                   <button
