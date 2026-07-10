@@ -1,6 +1,7 @@
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { APP_ROUTES } from '@/routes/app-routes'
 
 export function MissingTokenState() {
   return (
@@ -18,11 +19,8 @@ export function MissingTokenState() {
         </p>
       </div>
       <div className="mt-8 flex justify-center">
-        <Button
-          asChild
-          className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-5 text-sm font-semibold"
-        >
-          <Link href="/register">Quay lại đăng ký</Link>
+        <Button asChild size="auth">
+          <Link href={APP_ROUTES.auth.register}>Quay lại đăng ký</Link>
         </Button>
       </div>
     </div>

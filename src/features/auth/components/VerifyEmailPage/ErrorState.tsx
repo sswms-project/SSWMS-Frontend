@@ -2,6 +2,7 @@ import { AlertCircle, RotateCcw } from 'lucide-react'
 import Link from 'next/link'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import { APP_ROUTES } from '@/routes/app-routes'
 
 interface ErrorStateProps {
   readonly message: string
@@ -29,21 +30,14 @@ export function ErrorState({ message }: ErrorStateProps) {
         </AlertDescription>
       </Alert>
       <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-        <Button
-          asChild
-          className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-5 text-sm font-semibold"
-        >
-          <Link href="/register">
+        <Button asChild size="auth">
+          <Link href={APP_ROUTES.auth.register}>
             <RotateCcw className="size-4" aria-hidden="true" />
             Đăng ký lại
           </Link>
         </Button>
-        <Button
-          asChild
-          variant="outline"
-          className="border-secondary text-secondary hover:bg-muted h-11 rounded-md px-5 text-sm font-semibold"
-        >
-          <Link href="/login">Về trang đăng nhập</Link>
+        <Button asChild variant="outline" size="auth" className="border-secondary text-secondary">
+          <Link href={APP_ROUTES.auth.login}>Về trang đăng nhập</Link>
         </Button>
       </div>
     </div>

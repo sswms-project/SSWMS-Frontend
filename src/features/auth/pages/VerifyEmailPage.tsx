@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import type { ApiErrorResponse } from '@/types/api'
+import { APP_ROUTES } from '@/routes/app-routes'
 import { useVerifyEmailQuery } from '../hooks/use-auth'
 import {
   ErrorState,
@@ -47,7 +48,7 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
             variant="ghost"
             className="text-primary hover:bg-muted h-9 rounded-md px-3 text-xs font-semibold"
           >
-            <Link href="/login">
+            <Link href={APP_ROUTES.auth.login}>
               <ArrowLeft className="size-4" aria-hidden="true" />
               Đăng nhập
             </Link>
@@ -70,7 +71,7 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
           </CardContent>
         </Card>
 
-        <aside className="border-border bg-card rounded-lg border p-5">
+        <Card className="p-5">
           <div className="bg-accent text-primary flex size-10 items-center justify-center rounded-md">
             <ShieldCheck className="size-5" aria-hidden="true" />
           </div>
@@ -82,7 +83,7 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
           <div className="border-border bg-muted text-muted-foreground mt-5 rounded-md border p-3 text-xs leading-5">
             Link xác minh được backend cấp sau khi đăng ký và có thời hạn 15 phút.
           </div>
-        </aside>
+        </Card>
       </section>
     </main>
   )

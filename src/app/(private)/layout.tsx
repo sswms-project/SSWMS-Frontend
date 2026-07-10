@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { Boxes, LayoutDashboard, Package, Truck, Warehouse } from 'lucide-react'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
+import { APP_ROUTES } from '@/routes/app-routes'
 
 const navigation = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/warehouses', label: 'Warehouses', icon: Warehouse },
-  { href: '/inventory', label: 'Inventory', icon: Boxes },
-  { href: '/orders', label: 'Orders', icon: Package },
-  { href: '/delivery', label: 'Delivery', icon: Truck },
+  { href: APP_ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard },
+  { href: APP_ROUTES.warehouses, label: 'Warehouses', icon: Warehouse },
+  { href: APP_ROUTES.inventory, label: 'Inventory', icon: Boxes },
+  { href: APP_ROUTES.orders, label: 'Orders', icon: Package },
+  { href: APP_ROUTES.delivery, label: 'Delivery', icon: Truck },
 ]
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {

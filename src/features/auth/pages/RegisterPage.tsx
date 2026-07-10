@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { APP_ROUTES } from '@/routes/app-routes'
 import { useRegisterMutation } from '../hooks/use-auth'
 import type { RegisterFormValues } from '../schemas/register.schema'
 import { BenefitsPanel, RegisterForm, RegisterSuccess } from '../components/RegisterPage'
@@ -32,46 +33,51 @@ export function RegisterPage() {
   }
 
   return (
-    <main className="bg-background text-foreground min-h-[100dvh]">
-      <header className="border-border bg-background/90 sticky top-0 z-40 border-b px-4 backdrop-blur-md md:px-6">
-        <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between">
-          <Link href="/" className="text-primary flex items-center gap-2" aria-label="SSWMS">
-            <Warehouse className="size-7" aria-hidden="true" />
-            <span className="text-xl font-bold tracking-tight">SSWMS</span>
+    <div className="flex min-h-dvh">
+      {/* Left brand panel — sticky, full viewport height */}
+      <aside className="sticky top-0 hidden h-dvh flex-shrink-0 lg:block lg:w-[42%] xl:w-[45%]">
+        <BenefitsPanel />
+      </aside>
+
+      {/* Right scrollable form area */}
+      <div className="flex flex-1 flex-col bg-white">
+        <header className="flex items-center justify-between px-8 py-5 lg:px-12">
+          {/* Mobile-only logo */}
+          <Link
+            href="/"
+            className="text-primary flex items-center gap-2 lg:hidden"
+            aria-label="SSWMS"
+          >
+            <Warehouse className="size-6" aria-hidden="true" />
+            <span className="text-lg font-bold tracking-tight">SSWMS</span>
           </Link>
+          <div className="hidden lg:block" aria-hidden="true" />
           <div className="flex items-center gap-4">
-            <span className="text-muted-foreground hidden text-xs font-semibold md:inline">
-              Hỗ trợ trực tuyến: 1800-SSWMS
+            <span className="text-muted-foreground hidden text-xs md:inline">
+              Hỗ trợ: 1800-SSWMS
             </span>
             <Link
-              href="/login"
-              className="text-primary text-xs font-semibold underline-offset-4 hover:underline"
+              href={APP_ROUTES.auth.login}
+              className="text-primary text-sm font-semibold underline-offset-4 hover:underline"
             >
               Đăng nhập
             </Link>
           </div>
+        </header>
+
+        <div className="flex-1 px-8 py-6 lg:px-12 xl:px-16">
+          <div className="max-w-xl">
+            {successMessage ? (
+              <RegisterSuccess
+                message={successMessage}
+                onCreateAnother={() => setSuccessMessage(null)}
+              />
+            ) : (
+              <RegisterForm onSubmit={handleRegister} isLoading={registerMutation.isPending} />
+            )}
+          </div>
         </div>
-      </header>
-
-      <section className="mx-auto grid w-full max-w-[1100px] grid-cols-1 items-start gap-5 px-4 py-5 md:min-h-[calc(100dvh-4.25rem)] md:grid-cols-12 md:items-center md:px-6 md:py-4">
-        <aside
-          className="hidden md:col-span-5 md:flex md:flex-col md:gap-3"
-          aria-label="SSWMS benefits"
-        >
-          <BenefitsPanel />
-        </aside>
-
-        <section className="md:col-span-7">
-          {successMessage ? (
-            <RegisterSuccess
-              message={successMessage}
-              onCreateAnother={() => setSuccessMessage(null)}
-            />
-          ) : (
-            <RegisterForm onSubmit={handleRegister} isLoading={registerMutation.isPending} />
-          )}
-        </section>
-      </section>
-    </main>
+      </div>
+    </div>
   )
 }

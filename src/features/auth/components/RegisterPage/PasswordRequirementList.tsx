@@ -1,4 +1,5 @@
 import { CheckCircle2, Circle } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { passwordRequirements } from '@/features/auth/schemas/register.schema'
 
 interface PasswordRequirementListProps {
@@ -17,7 +18,7 @@ export function PasswordRequirementList({ password }: PasswordRequirementListPro
           return (
             <li
               key={requirement.id}
-              className={isMet ? 'text-primary flex items-center gap-2' : 'flex items-center gap-2'}
+              className={cn('flex items-center gap-2', isMet && 'text-primary')}
             >
               <Icon className="size-3.5 shrink-0" aria-hidden="true" />
               <span>{requirement.label}</span>

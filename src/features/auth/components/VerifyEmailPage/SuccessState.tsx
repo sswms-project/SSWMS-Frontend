@@ -1,6 +1,7 @@
 import { CheckCircle2, MailCheck } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { APP_ROUTES } from '@/routes/app-routes'
 
 interface SuccessStateProps {
   readonly message: string
@@ -30,18 +31,11 @@ export function SuccessState({ message }: SuccessStateProps) {
       </h2>
       <p className="text-muted-foreground mt-3 max-w-md text-sm leading-6">{message}</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button
-          asChild
-          className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-5 text-sm font-semibold"
-        >
-          <Link href="/login">Đến trang đăng nhập</Link>
+        <Button asChild size="auth">
+          <Link href={APP_ROUTES.auth.login}>Đến trang đăng nhập</Link>
         </Button>
-        <Button
-          asChild
-          variant="outline"
-          className="border-secondary text-secondary hover:bg-muted h-11 rounded-md px-5 text-sm font-semibold"
-        >
-          <Link href="/register">Tạo tenant khác</Link>
+        <Button asChild variant="outline" size="auth" className="border-secondary text-secondary">
+          <Link href={APP_ROUTES.auth.register}>Tạo tenant khác</Link>
         </Button>
       </div>
     </div>
