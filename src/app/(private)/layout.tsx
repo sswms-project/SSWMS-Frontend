@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import Link from 'next/link'
 import { Boxes, LayoutDashboard, Package, Truck, Warehouse } from 'lucide-react'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
@@ -27,7 +28,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={item.href as Route}
                   className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-950"
                 >
                   <Icon className="size-4" aria-hidden="true" />
