@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ShieldCheck, Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
@@ -56,18 +57,52 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
         </div>
       </header>
 
-      <section className="mx-auto grid w-full max-w-[960px] grid-cols-1 gap-4 px-4 py-8 md:grid-cols-[1fr_320px] md:px-6 md:py-14">
+      <section className="animate-in fade-in slide-in-from-bottom-3 mx-auto grid w-full max-w-[960px] grid-cols-1 gap-4 px-4 py-8 duration-500 md:grid-cols-[1fr_320px] md:px-6 md:py-14">
         <Card className="border-border bg-card rounded-lg border py-0 shadow-sm">
           <CardContent className="px-5 py-8 md:px-10 md:py-10">
-            {!token ? (
-              <MissingTokenState />
-            ) : verifyEmailQuery.isPending ? (
-              <LoadingState />
-            ) : verifyEmailQuery.isSuccess && successMessage ? (
-              <SuccessState message={successMessage} />
-            ) : (
-              <ErrorState message={errorMessage} />
-            )}
+            <AnimatePresence mode="wait">
+              {!token ? (
+                <motion.div
+                  key="missing"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <MissingTokenState />
+                </motion.div>
+              ) : verifyEmailQuery.isPending ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <LoadingState />
+                </motion.div>
+              ) : verifyEmailQuery.isSuccess && successMessage ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <SuccessState message={successMessage} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="error"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <ErrorState message={errorMessage} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
 

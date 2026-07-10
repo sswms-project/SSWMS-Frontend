@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { motion } from 'framer-motion'
 import { Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
@@ -40,16 +41,20 @@ export function RegisterPage() {
       </aside>
 
       {/* Right scrollable form area */}
-      <div className="flex flex-1 flex-col bg-white">
+      <motion.div
+        className="bg-card flex flex-1 flex-col"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+      >
         <header className="flex items-center justify-between px-8 py-5 lg:px-12">
-          {/* Mobile-only logo */}
           <Link
             href="/"
-            className="text-primary flex items-center gap-2 lg:hidden"
+            className="text-foreground flex items-center gap-2 lg:hidden"
             aria-label="SSWMS"
           >
-            <Warehouse className="size-6" aria-hidden="true" />
-            <span className="text-lg font-bold tracking-tight">SSWMS</span>
+            <Warehouse className="size-5" aria-hidden="true" />
+            <span className="text-base font-bold tracking-tight">SSWMS</span>
           </Link>
           <div className="hidden lg:block" aria-hidden="true" />
           <div className="flex items-center gap-4">
@@ -58,14 +63,14 @@ export function RegisterPage() {
             </span>
             <Link
               href={APP_ROUTES.auth.login}
-              className="text-primary text-sm font-semibold underline-offset-4 hover:underline"
+              className="text-foreground border-border hover:bg-muted rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
             >
               Đăng nhập
             </Link>
           </div>
         </header>
 
-        <div className="flex-1 px-8 py-6 lg:px-12 xl:px-16">
+        <div className="flex-1 px-8 py-8 lg:px-12 xl:px-16">
           <div className="max-w-xl">
             {successMessage ? (
               <RegisterSuccess
@@ -77,7 +82,7 @@ export function RegisterPage() {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

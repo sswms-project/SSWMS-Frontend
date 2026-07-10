@@ -10,14 +10,17 @@ interface TextFieldProps extends React.ComponentProps<typeof Input> {
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   ({ id, label, error, className, ...props }, ref) => (
     <Field className={className} data-invalid={Boolean(error)}>
-      <FieldLabel htmlFor={id} className="text-muted-foreground text-xs font-semibold">
+      <FieldLabel
+        htmlFor={id}
+        className="text-foreground text-[11px] font-semibold tracking-[0.07em] uppercase"
+      >
         {label}
       </FieldLabel>
       <Input
         id={id}
         ref={ref}
         aria-invalid={Boolean(error)}
-        className="bg-card h-11 rounded-md px-3 text-sm"
+        className="bg-card h-10 rounded-md px-3 text-sm transition-shadow"
         {...props}
       />
       <FieldError>{error}</FieldError>
