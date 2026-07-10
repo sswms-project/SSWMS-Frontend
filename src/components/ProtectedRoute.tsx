@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { APP_ROUTES } from '@/routes/app-routes'
 import { useAuthStore } from '@/stores/auth.store'
 
 export function ProtectedRoute({ children }: { readonly children: React.ReactNode }) {
@@ -14,7 +15,7 @@ export function ProtectedRoute({ children }: { readonly children: React.ReactNod
   }, [])
 
   useEffect(() => {
-    if (hydrated && !user) router.replace('/login')
+    if (hydrated && !user) router.replace(APP_ROUTES.auth.login)
   }, [hydrated, user, router])
 
   if (!hydrated) {

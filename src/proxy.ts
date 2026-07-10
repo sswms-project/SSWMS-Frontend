@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
+import { APP_ROUTES } from '@/routes/app-routes'
 
-const PUBLIC_PATHS = ['/login', '/register', '/auth/verify-email', '/unauthorized']
+const PUBLIC_PATHS = [APP_ROUTES.auth.login, APP_ROUTES.auth.register, APP_ROUTES.auth.verifyEmail]
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -10,11 +11,11 @@ export function proxy(request: NextRequest) {
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p))
 
   if (!isPublic && !token) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL(APP_ROUTES.auth.login, request.url))
   }
 
-  if (pathname === '/login' && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+  if (pathname === APP_ROUTES.auth.login && token) {
+    return NextResponse.redirect(new URL(APP_ROUTES.dashboard, request.url))
   }
 
   return NextResponse.next()

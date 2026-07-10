@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { APP_ROUTES } from '@/routes/app-routes'
 import { useAuthStore } from '@/stores/auth.store'
 import type { AuthUser } from '../types/auth.types'
 import { useLoginMutation } from '../hooks/use-auth'
@@ -9,7 +10,9 @@ import type { LoginFormValues } from '../schemas/login.schema'
 import { LoginForm } from '../components/LoginPage'
 
 function decodeJwtUser(token: string): AuthUser {
-  const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')
+  const part = token.split('.')[1]
+  if (!part) throw new Error('Invalid JWT: missing payload segment')
+  const base64 = part.replace(/-/g, '+').replace(/_/g, '/')
   const json = new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)))
   const payload = JSON.parse(json)
   return {
@@ -39,7 +42,7 @@ export function LoginPage() {
 
       const user = decodeJwtUser(accessToken)
       setAuth(user, accessToken, refreshToken)
-      router.replace('/dashboard')
+      router.replace(APP_ROUTES.dashboard)
     } catch {
       // onError in useLoginMutation handles logging + toast
     }

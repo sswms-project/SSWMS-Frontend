@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { APP_ROUTES } from '@/routes/app-routes'
 import { useAuthStore } from '@/stores/auth.store'
 
 export function AuthTestPanel() {
@@ -13,7 +14,7 @@ export function AuthTestPanel() {
 
   function handleLogout() {
     clearAuth()
-    router.replace('/login')
+    router.replace(APP_ROUTES.auth.login)
   }
 
   const accessToken = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null

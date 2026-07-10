@@ -2,6 +2,7 @@ import { CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription } from '@/components/ui/card'
+import { APP_ROUTES } from '@/routes/app-routes'
 
 interface RegisterSuccessProps {
   readonly message: string
@@ -19,16 +20,14 @@ export function RegisterSuccess({ message, onCreateAnother }: RegisterSuccessPro
           <h2 className="text-foreground mt-6 text-2xl font-semibold">Đăng ký thành công</h2>
           <CardDescription className="mt-3 max-w-md text-sm leading-6">{message}</CardDescription>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-5 text-sm font-semibold"
-            >
-              <Link href="/login">Đến trang đăng nhập</Link>
+            <Button asChild size="auth">
+              <Link href={APP_ROUTES.auth.login}>Đến trang đăng nhập</Link>
             </Button>
             <Button
               type="button"
               variant="outline"
-              className="border-secondary text-secondary hover:bg-muted h-11 rounded-md px-5 text-sm font-semibold"
+              size="auth"
+              className="border-secondary text-secondary"
               onClick={onCreateAnother}
             >
               Đăng ký tenant khác
