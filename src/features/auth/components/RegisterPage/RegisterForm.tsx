@@ -1,9 +1,9 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { Controller, useForm, useWatch } from 'react-hook-form'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -41,30 +41,38 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
     control,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, submitCount },
   } = form
+
+  const hasErrors = Object.keys(errors).length > 0
+  const formRef = useRef<HTMLFormElement>(null)
+  useEffect(() => {
+    if (submitCount === 0 || !hasErrors) return
+    const el = formRef.current
+    if (!el) return
+    el.classList.add('animate-shake')
+    const t = setTimeout(() => el.classList.remove('animate-shake'), 450)
+    return () => clearTimeout(t)
+  }, [submitCount, hasErrors])
 
   const passwordValue = useWatch({ control, name: 'password' }) ?? ''
   const confirmPasswordValue = useWatch({ control, name: 'confirmPassword' }) ?? ''
 
   return (
-    <div className="w-full">
+    <div className="animate-in fade-in slide-in-from-bottom-3 w-full duration-500">
       <header className="mb-6">
-        <Badge
-          variant="outline"
-          className="border-primary/30 bg-primary/10 text-primary mb-3 rounded-full"
-        >
-          Tạo tenant owner
-        </Badge>
-        <h1 className="text-foreground text-2xl leading-tight font-bold">
-          Đăng ký tài khoản hệ thống
+        <p className="text-muted-foreground mb-2 text-[11px] font-semibold tracking-[0.1em] uppercase">
+          Hệ thống quản lý kho
+        </p>
+        <h1 className="text-foreground text-2xl leading-[1.2] font-semibold tracking-tight">
+          Đăng ký tài khoản
         </h1>
         <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
           Cung cấp thông tin doanh nghiệp và người đại diện để khởi tạo workspace SSWMS.
         </p>
       </header>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 md:grid-cols-2">
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="grid gap-4 md:grid-cols-2">
         <TextField
           id="tenantName"
           label="Tên doanh nghiệp / Kho hàng"
@@ -98,14 +106,17 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
           {...register('email')}
         />
         <Field className="md:col-span-2" data-invalid={Boolean(errors.address)}>
-          <FieldLabel htmlFor="address" className="text-muted-foreground text-xs font-semibold">
+          <FieldLabel
+            htmlFor="address"
+            className="text-foreground text-[11px] font-semibold tracking-[0.07em] uppercase"
+          >
             Địa chỉ / Khu vực vận hành
           </FieldLabel>
           <Textarea
             id="address"
             placeholder="123 Nguyễn Huệ, TP.HCM"
             aria-invalid={Boolean(errors.address)}
-            className="bg-card min-h-[80px] rounded-md px-3 py-2.5 text-sm"
+            className="bg-card min-h-[80px] rounded-md px-3 py-2.5 text-sm transition-shadow"
             {...register('address')}
           />
           <FieldError>{errors.address?.message}</FieldError>
@@ -155,7 +166,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
               <>
                 <FieldLabel
                   htmlFor="acceptTerms"
-                  className="text-muted-foreground block text-sm leading-5"
+                  className="text-foreground/70 block text-sm leading-5"
                 >
                   Tôi đồng ý với{' '}
                   <span className="text-primary font-semibold">Điều khoản Dịch vụ</span> và{' '}
@@ -167,22 +178,21 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
           )}
         />
 
-        <div className="flex flex-col gap-3 pt-1 md:col-span-2 md:flex-row md:items-center md:justify-between">
-          <small className="text-muted-foreground text-xs leading-5">
+        <div className="border-border md:col-span-2">
+          <p className="text-muted-foreground mb-4 text-xs leading-5">
             Sau khi đăng ký, hệ thống sẽ gửi email xác minh có hiệu lực trong 15 phút.
-          </small>
+          </p>
           <Button
             type="submit"
             size="lg"
             disabled={isLoading}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 cursor-pointer rounded-lg px-6 text-sm font-semibold transition-colors active:scale-[0.98] md:min-w-44"
+            className="h-10 w-full cursor-pointer rounded-md text-sm font-semibold transition-all active:scale-[0.98] md:w-auto md:min-w-40"
           >
             {isLoading ? (
               <Loader2 className="size-4 animate-spin" aria-hidden="true" />
             ) : (
-              <ArrowRight className="size-4" aria-hidden="true" />
+              'Tạo tài khoản'
             )}
-            Tạo tài khoản
           </Button>
         </div>
       </form>
