@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Boxes, LayoutDashboard, Package, Truck, Warehouse } from 'lucide-react'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { APP_ROUTES } from '@/routes/app-routes'
+import { AdminNav } from './AdminNav'
 
 const navigation = [
   { href: APP_ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard },
@@ -36,6 +37,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
                 </Link>
               )
             })}
+            <AdminNav />
           </nav>
         </aside>
         <div className="lg:pl-64">

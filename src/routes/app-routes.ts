@@ -10,4 +10,7 @@ export const APP_ROUTES = {
   orders: '/orders',
   delivery: '/delivery',
   unauthorized: '/unauthorized',
+  admin: {
+    roles: '/admin/roles',
+  },
 } as const
