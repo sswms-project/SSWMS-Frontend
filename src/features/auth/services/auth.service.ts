@@ -22,8 +22,8 @@ export const authService = {
 
   verifyEmail: (token: string) =>
     axiosClient
-      .get<
-        ApiResponse<VerifyEmailResponseDto>
-      >(API_ENDPOINTS.auth.verifyEmail, { params: { token } })
+      .get<ApiResponse<VerifyEmailResponseDto>>(API_ENDPOINTS.auth.verifyEmail, {
+        params: { token },
+      })
       .then((r) => r.data),
 }

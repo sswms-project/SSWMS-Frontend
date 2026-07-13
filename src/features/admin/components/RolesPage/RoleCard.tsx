@@ -15,40 +15,42 @@ export function RoleCard({ role }: RoleCardProps) {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+    <article className="border-border bg-card overflow-hidden rounded-lg border shadow-sm">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className="flex w-full items-center gap-3 px-5 py-4 text-left hover:bg-slate-50"
+        className="hover:bg-muted/60 flex w-full items-center gap-3 px-5 py-4 text-left"
         aria-expanded={expanded}
       >
         <ShieldCheck
           className={cn(
             'size-5 shrink-0',
-            role.isSystemRole ? 'text-emerald-600' : 'text-slate-400'
+            role.isSystemRole ? 'text-primary' : 'text-muted-foreground/70'
           )}
           aria-hidden="true"
         />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <p className="text-sm font-semibold text-slate-900">{role.roleName}</p>
+            <p className="text-foreground text-sm font-semibold">{role.roleName}</p>
             {role.isSystemRole && (
               <Badge variant="secondary" className="text-xs">
                 System
               </Badge>
             )}
           </div>
-          <p className="mt-0.5 text-xs text-slate-500">{role.permissions.length} quyền đã gán</p>
+          <p className="text-muted-foreground mt-0.5 text-xs">
+            {role.permissions.length} quyền đã gán
+          </p>
         </div>
         {expanded ? (
-          <ChevronDown className="size-4 shrink-0 text-slate-400" aria-hidden="true" />
+          <ChevronDown className="text-muted-foreground/70 size-4 shrink-0" aria-hidden="true" />
         ) : (
-          <ChevronRight className="size-4 shrink-0 text-slate-400" aria-hidden="true" />
+          <ChevronRight className="text-muted-foreground/70 size-4 shrink-0" aria-hidden="true" />
         )}
       </button>
 
       {expanded && (
-        <div className="border-t border-slate-100">
+        <div className="border-border/60 border-t">
           <RolePermissionEditor role={role} />
         </div>
       )}

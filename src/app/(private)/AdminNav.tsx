@@ -13,13 +13,13 @@ export function AdminNav() {
 
   return (
     <>
-      <div className="my-2 border-t border-slate-100" />
-      <p className="px-3 py-1 text-xs font-semibold tracking-wider text-slate-400 uppercase">
+      <div className="border-border/60 my-2 border-t" />
+      <p className="text-muted-foreground/70 px-3 py-1 text-xs font-semibold tracking-wider uppercase">
         Quản trị hệ thống
       </p>
       <Link
         href={APP_ROUTES.admin.roles}
-        className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium"
       >
         <Shield className="size-4" aria-hidden="true" />
         Phân quyền

@@ -1,11 +1,12 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeOff, Loader2, Warehouse } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
+import { Logo } from '@/components/Logo'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
@@ -48,24 +49,17 @@ export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
 
       {/* Right form area */}
       <motion.div
-        className="bg-card flex flex-1 flex-col"
+        className="bg-background flex flex-1 flex-col"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         <header className="flex items-center justify-between px-8 py-5 lg:px-12">
-          <Link
-            href="/"
-            className="text-foreground flex items-center gap-2 lg:hidden"
-            aria-label="SSWMS"
-          >
-            <Warehouse className="size-5" aria-hidden="true" />
-            <span className="text-base font-bold tracking-tight">SSWMS</span>
-          </Link>
+          <Logo className="lg:hidden" />
           <div className="hidden lg:block" aria-hidden="true" />
           <div className="flex items-center gap-4">
             <span className="text-muted-foreground hidden text-xs md:inline">
-              Hỗ trợ: 1800-SSWMS
+              Hỗ trợ: 1800-KOVIA
             </span>
             <Link
               href={APP_ROUTES.auth.register}
