@@ -196,7 +196,7 @@ export function WarehouseScene3D() {
       className="h-[440px] w-full [mask-image:radial-gradient(115%_95%_at_50%_42%,black_58%,transparent_96%)]"
     >
       <Canvas
-        shadows
+        shadows={{ type: THREE.PCFShadowMap }}
         dpr={[1, 1.75]}
         camera={{ position: [6.4, 4.6, 8.2], fov: 34 }}
         gl={{ antialias: true, alpha: true }}
