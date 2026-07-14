@@ -11,7 +11,7 @@ export function LoadingState() {
         Vui lòng chờ trong giây lát
       </h2>
       <p className="text-muted-foreground mt-3 max-w-md text-sm leading-6">
-        SSWMS đang kiểm tra token từ email và cập nhật trạng thái tài khoản của bạn.
+        KOVIA đang kiểm tra token từ email và cập nhật trạng thái tài khoản của bạn.
       </p>
     </div>
   )

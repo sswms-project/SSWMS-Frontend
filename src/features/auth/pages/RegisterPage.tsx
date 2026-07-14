@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { Logo } from '@/components/Logo'
 import { APP_ROUTES } from '@/routes/app-routes'
 import { useRegisterMutation } from '../hooks/use-auth'
 import type { RegisterFormValues } from '../schemas/register.schema'
@@ -42,24 +42,17 @@ export function RegisterPage() {
 
       {/* Right scrollable form area */}
       <motion.div
-        className="bg-card flex flex-1 flex-col"
+        className="bg-background flex flex-1 flex-col"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         <header className="flex items-center justify-between px-8 py-5 lg:px-12">
-          <Link
-            href="/"
-            className="text-foreground flex items-center gap-2 lg:hidden"
-            aria-label="SSWMS"
-          >
-            <Warehouse className="size-5" aria-hidden="true" />
-            <span className="text-base font-bold tracking-tight">SSWMS</span>
-          </Link>
+          <Logo className="lg:hidden" />
           <div className="hidden lg:block" aria-hidden="true" />
           <div className="flex items-center gap-4">
             <span className="text-muted-foreground hidden text-xs md:inline">
-              Hỗ trợ: 1800-SSWMS
+              Hỗ trợ: 1800-KOVIA
             </span>
             <Link
               href={APP_ROUTES.auth.login}

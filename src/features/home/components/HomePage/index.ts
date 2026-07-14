@@ -1,0 +1,7 @@
+export * from './DataInsightsSection'
+export * from './FeatureHighlightsSection'
+export * from './HeroSection'
+export * from './HomeFooter'
+export * from './HomeHeader'
+export * from './PricingSection'
+export * from './TrustBadgesSection'
