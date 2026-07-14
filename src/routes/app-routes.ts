@@ -8,6 +8,11 @@ export const APP_ROUTES = {
     resetPassword: '/auth/reset-password',
   },
   dashboard: '/dashboard',
+  dashboardByRole: {
+    tenant: '/dashboard/tenant',
+    manager: '/dashboard/manager',
+    staff: '/dashboard/staff',
+  },
   warehouses: '/warehouses',
   inventory: '/inventory',
   orders: '/orders',
