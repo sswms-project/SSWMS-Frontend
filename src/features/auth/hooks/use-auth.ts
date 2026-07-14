@@ -3,7 +3,8 @@ import { toast } from 'sonner'
 import type { ApiErrorResponse, ApiResponse } from '@/types/api'
 import { authService } from '../services/auth.service'
 import type {
-  LoginRequestDto,
+  ForgotPasswordRequestDto,
+  ForgotPasswordResponseDto,
   RegisterRequestDto,
   RegisterResponseDto,
   VerifyEmailResponseDto,
@@ -35,5 +36,19 @@ export function useVerifyEmailQuery(token?: string) {
     queryFn: () => authService.verifyEmail(token ?? ''),
     enabled: Boolean(token),
     retry: false,
+  })
+}
+
+export function useForgotPassword() {
+  return useMutation<
+    ApiResponse<ForgotPasswordResponseDto>,
+    ApiErrorResponse,
+    ForgotPasswordRequestDto
+  >({
+    mutationFn: authService.forgotPassword,
+    onError: (error) => {
+      console.error(error)
+      toast.error(error.message ?? 'Không thể gửi email đặt lại mật khẩu. Vui lòng thử lại.')
+    },
   })
 }

@@ -2,7 +2,12 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { APP_ROUTES } from '@/routes/app-routes'
 
-const PUBLIC_PATHS = [APP_ROUTES.auth.login, APP_ROUTES.auth.register, APP_ROUTES.auth.verifyEmail]
+const PUBLIC_PATHS = [
+  APP_ROUTES.auth.login,
+  APP_ROUTES.auth.register,
+  APP_ROUTES.auth.verifyEmail,
+  APP_ROUTES.auth.forgotPassword,
+]
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
