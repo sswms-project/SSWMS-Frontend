@@ -7,6 +7,8 @@ import type {
   ForgotPasswordResponseDto,
   RegisterRequestDto,
   RegisterResponseDto,
+  ResetPasswordRequestDto,
+  ResetPasswordResponseDto,
   VerifyEmailResponseDto,
 } from '../types/auth.types'
 
@@ -49,6 +51,20 @@ export function useForgotPassword() {
     onError: (error) => {
       console.error(error)
       toast.error(error.message ?? 'Không thể gửi email đặt lại mật khẩu. Vui lòng thử lại.')
+    },
+  })
+}
+
+export function useResetPassword() {
+  return useMutation<
+    ApiResponse<ResetPasswordResponseDto>,
+    ApiErrorResponse,
+    ResetPasswordRequestDto
+  >({
+    mutationFn: authService.resetPassword,
+    onError: (error) => {
+      console.error(error)
+      toast.error(error.message ?? 'Không thể đặt lại mật khẩu. Vui lòng thử lại.')
     },
   })
 }

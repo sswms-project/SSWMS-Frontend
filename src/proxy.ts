@@ -7,6 +7,7 @@ const PUBLIC_PATHS = [
   APP_ROUTES.auth.register,
   APP_ROUTES.auth.verifyEmail,
   APP_ROUTES.auth.forgotPassword,
+  APP_ROUTES.auth.resetPassword,
 ]
 
 export function proxy(request: NextRequest) {
