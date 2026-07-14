@@ -10,6 +10,10 @@
 !.yarn/releases
 !.yarn/versions
 
+# this project uses pnpm (see packageManager in package.json) — ignore other lockfiles
+package-lock.json
+yarn.lock
+
 # testing
 /coverage
 
@@ -23,6 +27,10 @@
 # misc
 .DS_Store
 *.pem
+
+# python (skill scripts)
+__pycache__/
+*.pyc
 
 # debug
 npm-debug.log*

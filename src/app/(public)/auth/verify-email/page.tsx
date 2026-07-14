@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { VerifyEmailPage } from '@/features/auth/pages/VerifyEmailPage'
 
 export const metadata: Metadata = {
-  title: 'Xác minh email | SSWMS',
+  title: 'Xác minh email | KOVIA',
   description: 'Xác minh email đăng ký tenant owner cho Smart SaaS Warehouse Management System',
 }
 

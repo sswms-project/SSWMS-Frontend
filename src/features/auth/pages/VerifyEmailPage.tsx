@@ -2,9 +2,10 @@
 
 import * as React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, ShieldCheck, Warehouse } from 'lucide-react'
+import { ArrowLeft, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { Logo } from '@/components/Logo'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import type { ApiErrorResponse } from '@/types/api'
@@ -40,10 +41,7 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
     <main className="bg-background text-foreground min-h-[100dvh]">
       <header className="border-border bg-background/90 border-b px-4 backdrop-blur-md md:px-6">
         <div className="mx-auto flex h-16 max-w-[960px] items-center justify-between">
-          <Link href="/" className="text-primary flex items-center gap-2" aria-label="SSWMS">
-            <Warehouse className="size-7" aria-hidden="true" />
-            <span className="text-xl font-bold tracking-tight">SSWMS</span>
-          </Link>
+          <Logo size="lg" />
           <Button
             asChild
             variant="ghost"
@@ -112,7 +110,7 @@ export function VerifyEmailPage({ token }: VerifyEmailPageProps) {
           </div>
           <h2 className="text-foreground mt-4 text-sm font-semibold">Bảo vệ workspace</h2>
           <p className="text-muted-foreground mt-2 text-sm leading-6">
-            Email xác minh giúp SSWMS đảm bảo người tạo tenant là chủ sở hữu hợp lệ trước khi kích
+            Email xác minh giúp KOVIA đảm bảo người tạo tenant là chủ sở hữu hợp lệ trước khi kích
             hoạt tài khoản vận hành.
           </p>
           <div className="border-border bg-muted text-muted-foreground mt-5 rounded-md border p-3 text-xs leading-5">

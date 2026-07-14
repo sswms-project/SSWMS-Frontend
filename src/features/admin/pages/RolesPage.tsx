@@ -20,7 +20,7 @@ export function RolesPage() {
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center gap-2 py-16 text-slate-500">
+      <div className="text-muted-foreground flex flex-col items-center gap-2 py-16">
         <ShieldAlert className="size-10 text-red-400" aria-hidden="true" />
         <p className="text-sm">Không thể tải danh sách vai trò. Vui lòng thử lại.</p>
       </div>
@@ -29,7 +29,7 @@ export function RolesPage() {
 
   if (!roles?.length) {
     return (
-      <div className="flex flex-col items-center gap-2 py-16 text-slate-500">
+      <div className="text-muted-foreground flex flex-col items-center gap-2 py-16">
         <ShieldAlert className="size-10" aria-hidden="true" />
         <p className="text-sm">Chưa có vai trò nào trong hệ thống.</p>
       </div>
