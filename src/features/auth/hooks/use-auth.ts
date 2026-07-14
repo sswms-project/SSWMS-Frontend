@@ -3,7 +3,6 @@ import { toast } from 'sonner'
 import type { ApiErrorResponse, ApiResponse } from '@/types/api'
 import { authService } from '../services/auth.service'
 import type {
-  LoginRequestDto,
   RegisterRequestDto,
   RegisterResponseDto,
   VerifyEmailResponseDto,
