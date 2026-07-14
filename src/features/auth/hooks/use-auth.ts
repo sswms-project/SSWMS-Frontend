@@ -12,11 +12,19 @@ import type {
   VerifyEmailResponseDto,
 } from '../types/auth.types'
 
+function logAuthError(action: string, error: ApiErrorResponse) {
+  console.warn(`[auth] ${action} failed`, {
+    statusCode: error.statusCode,
+    message: error.message,
+    errors: error.errors,
+  })
+}
+
 export function useLoginMutation() {
   return useMutation({
     mutationFn: authService.login,
     onError: (error: ApiErrorResponse) => {
-      console.error(error)
+      logAuthError('login', error)
       toast.error(error.message ?? 'Đăng nhập thất bại. Vui lòng thử lại.')
     },
   })
@@ -26,7 +34,7 @@ export function useRegisterMutation() {
   return useMutation<ApiResponse<RegisterResponseDto>, ApiErrorResponse, RegisterRequestDto>({
     mutationFn: authService.registerTenant,
     onError: (error) => {
-      console.error(error)
+      logAuthError('register', error)
       toast.error(error.message ?? 'Không thể đăng ký tài khoản. Vui lòng thử lại.')
     },
   })
@@ -49,7 +57,7 @@ export function useForgotPassword() {
   >({
     mutationFn: authService.forgotPassword,
     onError: (error) => {
-      console.error(error)
+      logAuthError('forgot password', error)
       toast.error(error.message ?? 'Không thể gửi email đặt lại mật khẩu. Vui lòng thử lại.')
     },
   })
@@ -63,7 +71,7 @@ export function useResetPassword() {
   >({
     mutationFn: authService.resetPassword,
     onError: (error) => {
-      console.error(error)
+      logAuthError('reset password', error)
       toast.error(error.message ?? 'Không thể đặt lại mật khẩu. Vui lòng thử lại.')
     },
   })

@@ -19,6 +19,29 @@ const API_BASE_URL = normalizeApiBaseUrl(
     'http://localhost:7070'
 )
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null
+
+const normalizeApiError = (error: AxiosError): ApiErrorResponse => {
+  const data = error.response?.data
+  const statusCode =
+    isRecord(data) && typeof data.statusCode === 'number'
+      ? data.statusCode
+      : (error.response?.status ?? 500)
+  const message =
+    isRecord(data) && typeof data.message === 'string' && data.message.trim().length > 0
+      ? data.message
+      : error.message || 'Something went wrong. Please try again.'
+  const errors =
+    isRecord(data) && isRecord(data.errors) ? (data.errors as Record<string, string[]>) : undefined
+
+  return {
+    statusCode,
+    message,
+    ...(errors ? { errors } : {}),
+  }
+}
+
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30_000,
@@ -123,14 +146,7 @@ axiosClient.interceptors.response.use(
       window.location.href = '/forbidden'
     }
 
-    if (!error.response) {
-      console.error('Network error:', error.message)
-    }
-
-    const apiError: ApiErrorResponse = (error.response?.data as ApiErrorResponse) ?? {
-      statusCode: error.response?.status ?? 500,
-      message: error.message,
-    }
+    const apiError = normalizeApiError(error)
 
     return Promise.reject(apiError)
   }
