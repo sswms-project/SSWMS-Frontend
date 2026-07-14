@@ -27,10 +27,14 @@ function groupByModule(permissions: PermissionResponse[]) {
 export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
   const { data: allPermissions, isLoading } = usePermissionsQuery()
   const assignMutation = useAssignPermissionsMutation()
-  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [selected, setSelected] = useState<Set<string>>(
+    () => new Set(role.permissions.map((permission) => permission.id))
+  )
 
   useEffect(() => {
-    setSelected(new Set(role.permissions.map((p) => p.id)))
+    queueMicrotask(() => {
+      setSelected(new Set(role.permissions.map((permission) => permission.id)))
+    })
   }, [role])
 
   function togglePermission(id: string) {
