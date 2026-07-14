@@ -42,3 +42,10 @@ export interface ForgotPasswordRequestDto {
 }
 
 export type ForgotPasswordResponseDto = unknown
+
+export interface ResetPasswordRequestDto {
+  token: string
+  newPassword: string
+}
+
+export type ResetPasswordResponseDto = unknown
