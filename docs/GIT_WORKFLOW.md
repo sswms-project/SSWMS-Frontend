@@ -19,18 +19,18 @@ git pull origin main
 Use short, descriptive branch names with a work type and ticket/task code.
 
 ```text
-<type>/SSWMS-<number>-<short-description>
+<type>/sswms-<number>-<short-description>
 ```
 
 Examples:
 
 ```text
-feat/SSWMS-12-register-screen
-fix/SSWMS-18-login-validation
-ui/SSWMS-21-inventory-table
-docs/SSWMS-25-git-workflow
-refactor/SSWMS-31-auth-api-hooks
-chore/SSWMS-40-update-dependencies
+feat/sswms-12-register-screen
+fix/sswms-18-login-validation
+ui/sswms-21-inventory-table
+docs/sswms-25-git-workflow
+refactor/sswms-31-auth-api-hooks
+chore/sswms-40-update-dependencies
 ```
 
 Allowed branch types:
@@ -56,18 +56,18 @@ git status --short --branch
 - Use clear commit messages in this format:
 
 ```text
-<type>(SSWMS-<number>): <short summary>
+<type>(sswms-<number>): <short summary>
 ```
 
 Examples:
 
 ```text
-feat(SSWMS-12): add register screen
-fix(SSWMS-18): validate tenant code on login
-ui(SSWMS-21): build inventory table layout
-docs(SSWMS-25): add git workflow
-refactor(SSWMS-31): split auth API hooks
-chore(SSWMS-40): update lint config
+feat(sswms-12): add register screen
+fix(sswms-18): validate tenant code on login
+ui(sswms-21): build inventory table layout
+docs(sswms-25): add git workflow
+refactor(sswms-31): split auth API hooks
+chore(sswms-40): update lint config
 ```
 
 If no ticket/task number exists, use a concise scope instead:
@@ -110,13 +110,13 @@ For documentation-only changes, tests are not required, but the changed files sh
 - Use a pull request title in this format:
 
 ```text
-<type>(SSWMS-<number>): <short summary>
+<type>(sswms-<number>): <short summary>
 ```
 
 Example:
 
 ```text
-feat(SSWMS-12): add register screen
+feat(sswms-12): add register screen
 ```
 
 - Before merge, confirm the branch is up to date with `main`.
@@ -145,7 +145,7 @@ When an AI agent works in this repository:
 
 - Read this file before creating branches, commits, merges, or pushes.
 - Ask for confirmation before creating a branch if the user did not specify the task code.
-- Use the branch format `feat/SSWMS-xx-short-description` for new features unless the user specifies another type.
-- Use commit messages like `feat(SSWMS-xx): short summary`.
+- Use the branch format `feat/sswms-xx-short-description` for new features unless the user specifies another type.
+- Use commit messages like `feat(sswms-xx): short summary`.
 - Run `git status --short --branch` before and after Git operations.
 - Never force push or run destructive Git commands without explicit user approval.
