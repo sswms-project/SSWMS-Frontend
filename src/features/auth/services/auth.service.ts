@@ -2,6 +2,8 @@ import { axiosClient } from '@/lib/axios'
 import { API_ENDPOINTS } from '@/routes/api-endpoints'
 import type { ApiResponse } from '@/types/api'
 import type {
+  ForgotPasswordRequestDto,
+  ForgotPasswordResponseDto,
   LoginRequestDto,
   LoginResponseDto,
   RegisterRequestDto,
@@ -25,5 +27,10 @@ export const authService = {
       .get<ApiResponse<VerifyEmailResponseDto>>(API_ENDPOINTS.auth.verifyEmail, {
         params: { token },
       })
+      .then((r) => r.data),
+
+  forgotPassword: (body: ForgotPasswordRequestDto) =>
+    axiosClient
+      .post<ApiResponse<ForgotPasswordResponseDto>>(API_ENDPOINTS.auth.forgotPassword, body)
       .then((r) => r.data),
 }

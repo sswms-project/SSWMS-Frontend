@@ -113,7 +113,7 @@ export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
                     Mật khẩu
                   </FieldLabel>
                   <Link
-                    href="#"
+                    href={APP_ROUTES.auth.forgotPassword}
                     className="text-muted-foreground hover:text-primary text-xs transition-colors"
                   >
                     Quên mật khẩu?
