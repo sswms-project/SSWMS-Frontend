@@ -1,18 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useSyncExternalStore } from 'react'
 import { APP_ROUTES } from '@/routes/app-routes'
 import { useAuthStore } from '@/stores/auth.store'
+
+function subscribeToHydration() {
+  return () => {}
+}
 
 export function ProtectedRoute({ children }: { readonly children: React.ReactNode }) {
   const router = useRouter()
   const user = useAuthStore((state) => state.user)
-  const [hydrated, setHydrated] = useState(false)
-
-  useEffect(() => {
-    setHydrated(true)
-  }, [])
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false
+  )
 
   useEffect(() => {
     if (hydrated && !user) router.replace(APP_ROUTES.auth.login)

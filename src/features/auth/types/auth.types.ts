@@ -36,3 +36,16 @@ export interface RegisterRequestDto {
 export type RegisterResponseDto = string
 
 export type VerifyEmailResponseDto = string
+
+export interface ForgotPasswordRequestDto {
+  email: string
+}
+
+export type ForgotPasswordResponseDto = unknown
+
+export interface ResetPasswordRequestDto {
+  token: string
+  newPassword: string
+}
+
+export type ResetPasswordResponseDto = unknown

@@ -27,10 +27,14 @@ function groupByModule(permissions: PermissionResponse[]) {
 export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
   const { data: allPermissions, isLoading } = usePermissionsQuery()
   const assignMutation = useAssignPermissionsMutation()
-  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [selected, setSelected] = useState<Set<string>>(
+    () => new Set(role.permissions.map((permission) => permission.id))
+  )
 
   useEffect(() => {
-    setSelected(new Set(role.permissions.map((p) => p.id)))
+    queueMicrotask(() => {
+      setSelected(new Set(role.permissions.map((permission) => permission.id)))
+    })
   }, [role])
 
   function togglePermission(id: string) {
@@ -132,7 +136,7 @@ export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
           <Shield className="size-3.5" aria-hidden="true" />
           {assignMutation.isPending ? 'Đang lưu...' : 'Lưu thay đổi'}
         </Button>
-        {isDirty && <p className="text-xs text-amber-600">Có thay đổi chưa được lưu</p>}
+        {isDirty && <p className="text-on-primary-container text-xs">Có thay đổi chưa được lưu</p>}
       </div>
     </div>
   )
