@@ -15,7 +15,7 @@ export function MissingTokenState() {
           Link email chưa đầy đủ
         </h2>
         <p className="text-muted-foreground mx-auto mt-3 max-w-md text-sm leading-6">
-          Vui lòng mở đúng link xác minh được gửi tới email sau khi đăng ký tài khoản SSWMS.
+          Vui lòng mở đúng link xác minh được gửi tới email sau khi đăng ký tài khoản KOVIA.
         </p>
       </div>
       <div className="mt-8 flex justify-center">

@@ -2,7 +2,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { QueryProvider } from '@/providers/query-provider'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Baloo_2, Inter, JetBrains_Mono } from 'next/font/google'
 import './index.css'
 
 const inter = Inter({
@@ -15,9 +15,16 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin', 'vietnamese'],
 })
 
+/* Rounded, friendly display face reserved for the KOVIA wordmark only */
+const baloo2 = Baloo_2({
+  variable: '--font-baloo',
+  subsets: ['latin'],
+  weight: ['700'],
+})
+
 export const metadata: Metadata = {
-  title: 'SSWMS',
-  description: 'Smart SaaS Warehouse Management System',
+  title: 'KOVIA',
+  description: 'KOVIA — Smart SaaS Warehouse Management System',
 }
 
 export default function RootLayout({
@@ -28,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${inter.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetBrainsMono.variable} ${baloo2.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col" suppressHydrationWarning>

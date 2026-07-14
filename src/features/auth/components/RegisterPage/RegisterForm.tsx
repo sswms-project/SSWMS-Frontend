@@ -68,7 +68,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
           Đăng ký tài khoản
         </h1>
         <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-          Cung cấp thông tin doanh nghiệp và người đại diện để khởi tạo workspace SSWMS.
+          Cung cấp thông tin doanh nghiệp và người đại diện để khởi tạo workspace KOVIA.
         </p>
       </header>
 
@@ -170,7 +170,7 @@ export function RegisterForm({ onSubmit, isLoading }: RegisterFormProps) {
                 >
                   Tôi đồng ý với{' '}
                   <span className="text-primary font-semibold">Điều khoản Dịch vụ</span> và{' '}
-                  <span className="text-primary font-semibold">Chính sách Bảo mật</span> của SSWMS.
+                  <span className="text-primary font-semibold">Chính sách Bảo mật</span> của KOVIA.
                 </FieldLabel>
                 <FieldError>{errors.acceptTerms?.message}</FieldError>
               </>

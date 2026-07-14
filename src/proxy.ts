@@ -8,7 +8,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const token = request.cookies.get('access_token')?.value
 
-  const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p))
+  const isPublic = pathname === APP_ROUTES.home || PUBLIC_PATHS.some((p) => pathname.startsWith(p))
 
   if (!isPublic && !token) {
     return NextResponse.redirect(new URL(APP_ROUTES.auth.login, request.url))

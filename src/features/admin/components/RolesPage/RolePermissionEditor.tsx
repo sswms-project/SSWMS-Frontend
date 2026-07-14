@@ -70,7 +70,7 @@ export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
   }
 
   if (!allPermissions?.length) {
-    return <p className="p-4 text-sm text-slate-500">Không có quyền nào trong hệ thống.</p>
+    return <p className="text-muted-foreground p-4 text-sm">Không có quyền nào trong hệ thống.</p>
   }
 
   const grouped = groupByModule(allPermissions)
@@ -92,7 +92,7 @@ export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
               />
               <Label
                 htmlFor={`module-${module}`}
-                className="cursor-pointer text-sm font-semibold text-slate-800 capitalize"
+                className="text-foreground cursor-pointer text-sm font-semibold capitalize"
               >
                 {module}
               </Label>
@@ -108,7 +108,10 @@ export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
                     checked={selected.has(permission.id)}
                     onCheckedChange={() => togglePermission(permission.id)}
                   />
-                  <Label htmlFor={permission.id} className="cursor-pointer text-xs text-slate-600">
+                  <Label
+                    htmlFor={permission.id}
+                    className="text-muted-foreground cursor-pointer text-xs"
+                  >
                     {permission.permissionKey.split(':')[1] ?? permission.permissionKey}
                   </Label>
                 </div>

@@ -1,11 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Warehouse } from 'lucide-react'
-import Link from 'next/link'
+import { Logo } from '@/components/Logo'
+import { WarehouseScene } from '@/components/WarehouseScene'
 import { APP_ROUTES } from '@/routes/app-routes'
-
-const warehouseVisualUrl = 'https://picsum.photos/seed/warehouse-industrial/800/1200'
 
 const trustPoints = [
   {
@@ -24,33 +22,26 @@ const trustPoints = [
 
 export function BenefitsPanel() {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden bg-[#002b38]">
-      {/* Background image */}
+    <div className="bg-inverse-surface relative flex h-full flex-col overflow-hidden">
+      {/* Brand 3D warehouse visual as backdrop */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.12] grayscale"
-        style={{ backgroundImage: `url(${warehouseVisualUrl})` }}
-        role="img"
-        aria-label="Kho hàng tự động hiện đại"
-      />
+        className="absolute inset-x-0 bottom-0 scale-90 [mask-image:linear-gradient(to_top,black_55%,transparent)] opacity-60"
+        aria-hidden="true"
+      >
+        <WarehouseScene />
+      </div>
       {/* Subtle radial ambient light — top */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(114,211,241,0.08),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,color-mix(in_oklab,var(--primary-fixed-dim)_10%,transparent),transparent)]" />
       {/* Bottom fade */}
-      <div className="absolute right-0 bottom-0 left-0 h-1/2 bg-gradient-to-t from-[#002b38] to-transparent" />
+      <div className="from-inverse-surface absolute right-0 bottom-0 left-0 h-1/2 bg-gradient-to-t to-transparent" />
 
       <div className="relative flex h-full flex-col p-8 xl:p-12">
         {/* Logo */}
-        <Link
-          href={APP_ROUTES.auth.login}
-          className="flex items-center gap-2.5 text-white/90"
-          aria-label="SSWMS"
-        >
-          <Warehouse className="size-5" aria-hidden="true" />
-          <span className="text-base font-bold tracking-tight">SSWMS</span>
-        </Link>
+        <Logo href={APP_ROUTES.auth.login} tone="inverse" />
 
         {/* Hero text */}
         <div className="flex flex-1 flex-col justify-center">
-          <span className="mb-5 text-[11px] font-semibold tracking-[0.12em] text-[#72d3f1]/70 uppercase">
+          <span className="text-primary-fixed-dim/70 mb-5 text-[11px] font-semibold tracking-[0.12em] uppercase">
             Operational Intelligence
           </span>
           <h2 className="text-3xl leading-[1.2] font-semibold tracking-tight text-white xl:text-[2.6rem]">
@@ -76,7 +67,7 @@ export function BenefitsPanel() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 + i * 0.12, ease: 'easeOut' }}
               >
-                <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#72d3f1]/60" />
+                <div className="bg-primary-fixed-dim/60 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full" />
                 <div>
                   <p className="text-sm font-medium text-white/80">{point.label}</p>
                   <p className="mt-0.5 text-xs leading-relaxed text-white/35">{point.desc}</p>

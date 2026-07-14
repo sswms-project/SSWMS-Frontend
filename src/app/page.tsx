@@ -1,6 +1,5 @@
-import { redirect } from 'next/navigation'
-import { APP_ROUTES } from '@/routes/app-routes'
+import { HomePage } from '@/features/home'
 
 export default function Home() {
-  redirect(APP_ROUTES.auth.login)
+  return <HomePage />
 }
