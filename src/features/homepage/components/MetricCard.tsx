@@ -1,13 +1,24 @@
-import type { DashboardMetric } from '../types'
+import type { DashboardMetric, MetricTrendPoint } from '../types'
 import { Card } from '@/components/ui/card'
 import { TrendingUp, TrendingDown } from 'lucide-react'
+import { AnimatedMetricValue } from './AnimatedMetricValue'
+import { MetricSparkline } from './MetricSparkline'
 
 interface MetricCardProps {
   metric: DashboardMetric
 }
 
+function getSparklineTrend(points: MetricTrendPoint[] | undefined, fallbackPositive: boolean) {
+  const first = points?.[0]
+  const last = points?.[points.length - 1]
+  if (first && last) return last.value >= first.value ? 'up' : 'down'
+  return fallbackPositive ? 'up' : 'down'
+}
+
 export function MetricCard({ metric }: MetricCardProps) {
   const isPositiveChange = metric.change ? metric.change > 0 : false
+  const trendPoints = metric.monthlyTrend
+  const sparklineTrend = getSparklineTrend(trendPoints, isPositiveChange)
 
   return (
     <Card className="border-border bg-card hover:ring-primary/30 p-6 transition-shadow duration-200">
@@ -19,7 +30,15 @@ export function MetricCard({ metric }: MetricCardProps) {
         </div>
 
         <div className="space-y-2">
-          <p className="text-foreground text-4xl font-bold">{metric.value}</p>
+          <div className="flex items-end justify-between gap-3">
+            <AnimatedMetricValue
+              value={metric.value}
+              className="text-foreground text-4xl font-bold"
+            />
+            {trendPoints && trendPoints.length > 1 && (
+              <MetricSparkline data={trendPoints} trend={sparklineTrend} />
+            )}
+          </div>
 
           {metric.change !== undefined && (
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">

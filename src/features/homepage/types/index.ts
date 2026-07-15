@@ -1,9 +1,16 @@
+export interface MetricTrendPoint {
+  date: Date
+  label: string
+  value: number
+}
+
 export interface DashboardMetric {
   label: string
   value: string | number
   change?: number
   changeLabel?: string
   icon?: string
+  monthlyTrend?: MetricTrendPoint[]
 }
 
 export interface WarehouseStats {
@@ -13,6 +20,8 @@ export interface WarehouseStats {
   usedCapacity: number
   activeOrders: number
   staffCount: number
+  revenue: number
+  revenueTarget: number
 }
 
 export interface QuickAction {

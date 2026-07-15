@@ -1,26 +1,49 @@
 'use client'
 
+import { useMemo, useState } from 'react'
+import type { DateRange } from 'react-day-picker'
 import { MetricCard } from './MetricCard'
-import { QuickActionsSection } from './QuickActionsSection'
+import { QuickActionsBar } from './QuickActionsBar'
 import { AlertCard } from './AlertCard'
 import { StaffTaskTable } from './StaffTaskTable'
+import { DateRangeFilter } from './DateRangeFilter'
 import { FadeIn } from './FadeIn'
 import { staffMetrics, staffQuickActions, myTasks } from '../utils/sample-data'
+import { getDefaultMetricsDateRange, filterMetricsByDateRange } from '../utils/date-range'
 
 export function WarehouseStaffDashboard() {
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(getDefaultMetricsDateRange())
+
+  const filteredMetrics = useMemo(
+    () => filterMetricsByDateRange(staffMetrics, dateRange),
+    [dateRange]
+  )
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <FadeIn>
-        <h1 className="text-foreground text-2xl font-bold">Bảng điều khiển công việc của tôi</h1>
-        <p className="text-muted-foreground mt-1 text-sm">
-          Nhiệm vụ và công việc được giao hôm nay
-        </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 className="text-foreground text-2xl font-bold">
+              Bảng điều khiển công việc của tôi
+            </h1>
+            <p className="text-muted-foreground mt-1 text-sm">
+              Nhiệm vụ và công việc được giao hôm nay
+            </p>
+          </div>
+          <DateRangeFilter value={dateRange} onChange={setDateRange} />
+        </div>
+      </FadeIn>
+
+      {/* Quick Actions */}
+      <FadeIn delay={0.05}>
+        <QuickActionsBar actions={staffQuickActions} />
       </FadeIn>
 
       {/* Task Metrics — operational only, no company-wide business figures */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {staffMetrics.map((metric, index) => (
+        {filteredMetrics.map((metric, index) => (
           <FadeIn key={metric.label} delay={0.05 + index * 0.05}>
             <MetricCard metric={metric} />
           </FadeIn>
@@ -37,16 +60,9 @@ export function WarehouseStaffDashboard() {
         />
       </FadeIn>
 
-      {/* Quick Actions and My Tasks */}
+      {/* My Tasks */}
       <FadeIn delay={0.35}>
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-1">
-            <QuickActionsSection actions={staffQuickActions} />
-          </div>
-          <div className="lg:col-span-2">
-            <StaffTaskTable tasks={myTasks} />
-          </div>
-        </div>
+        <StaffTaskTable tasks={myTasks} />
       </FadeIn>
     </div>
   )

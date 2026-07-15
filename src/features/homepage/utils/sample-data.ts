@@ -5,7 +5,32 @@ import type {
   StaffTask,
   AppNotification,
   RecentOperation,
+  MetricTrendPoint,
 } from '../types'
+
+const CURRENT_YEAR = new Date().getFullYear()
+const MONTH_LABELS = [
+  'Th1',
+  'Th2',
+  'Th3',
+  'Th4',
+  'Th5',
+  'Th6',
+  'Th7',
+  'Th8',
+  'Th9',
+  'Th10',
+  'Th11',
+  'Th12',
+]
+
+function buildMonthlyTrend(values: number[]): MetricTrendPoint[] {
+  return values.map((value, index) => ({
+    date: new Date(CURRENT_YEAR, index, 1),
+    label: MONTH_LABELS[index] ?? `Th${index + 1}`,
+    value,
+  }))
+}
 
 export const tenantOwnerMetrics: DashboardMetric[] = [
   {
@@ -13,24 +38,33 @@ export const tenantOwnerMetrics: DashboardMetric[] = [
     value: 12482,
     change: 5.2,
     changeLabel: 'so với tháng trước',
+    monthlyTrend: buildMonthlyTrend([
+      10200, 10450, 10680, 10900, 11150, 11400, 11650, 11900, 12080, 12220, 12350, 12482,
+    ]),
   },
   {
     label: 'Tổng tồn kho',
     value: 489201,
     change: 12.5,
     changeLabel: 'so với tháng trước',
+    monthlyTrend: buildMonthlyTrend([
+      420000, 428000, 435000, 441000, 448000, 455000, 461000, 468000, 474000, 480000, 485000,
+      489201,
+    ]),
   },
   {
     label: 'Đơn chờ xử lý',
     value: 84,
     change: 8.3,
     changeLabel: 'so với tháng trước',
+    monthlyTrend: buildMonthlyTrend([62, 58, 65, 70, 68, 75, 80, 77, 82, 79, 88, 84]),
   },
   {
     label: 'Doanh thu hôm nay',
     value: '142,5 triệu ₫',
     change: 15.2,
     changeLabel: 'so với tháng trước',
+    monthlyTrend: buildMonthlyTrend([98, 102, 105, 110, 108, 115, 120, 118, 125, 130, 138, 142.5]),
   },
 ]
 
@@ -40,24 +74,34 @@ export const warehouseManagerMetrics: DashboardMetric[] = [
     value: 3245,
     change: 4.8,
     changeLabel: 'so với tuần trước',
+    monthlyTrend: buildMonthlyTrend([
+      2800, 2850, 2900, 2950, 3000, 3050, 3080, 3120, 3150, 3180, 3210, 3245,
+    ]),
   },
   {
     label: 'Sức chứa kho',
     value: 8950,
     change: 2.1,
     changeLabel: 'so với tuần trước',
+    monthlyTrend: buildMonthlyTrend([
+      8200, 8300, 8400, 8500, 8550, 8600, 8650, 8700, 8750, 8820, 8880, 8950,
+    ]),
   },
   {
     label: 'Đơn đang xử lý',
     value: 234,
     change: 12,
     changeLabel: 'so với tuần trước',
+    monthlyTrend: buildMonthlyTrend([180, 190, 185, 200, 195, 210, 205, 215, 220, 225, 230, 234]),
   },
   {
     label: 'Độ chính xác lấy hàng',
     value: '99,2%',
     change: 0.5,
     changeLabel: 'so với tuần trước',
+    monthlyTrend: buildMonthlyTrend([
+      97.5, 97.8, 98.0, 98.2, 98.4, 98.5, 98.6, 98.8, 98.9, 99.0, 99.1, 99.2,
+    ]),
   },
 ]
 
@@ -114,6 +158,8 @@ export const warehouseStats: WarehouseStats[] = [
     usedCapacity: 8200,
     activeOrders: 45,
     staffCount: 24,
+    revenue: 620,
+    revenueTarget: 700,
   },
   {
     id: 'wh-002',
@@ -122,6 +168,8 @@ export const warehouseStats: WarehouseStats[] = [
     usedCapacity: 3200,
     activeOrders: 28,
     staffCount: 12,
+    revenue: 310,
+    revenueTarget: 350,
   },
   {
     id: 'wh-003',
@@ -130,6 +178,8 @@ export const warehouseStats: WarehouseStats[] = [
     usedCapacity: 4100,
     activeOrders: 35,
     staffCount: 15,
+    revenue: 275,
+    revenueTarget: 320,
   },
 ]
 
@@ -166,24 +216,30 @@ export const staffMetrics: DashboardMetric[] = [
     value: 18,
     change: 3,
     changeLabel: 'so với hôm qua',
+    monthlyTrend: buildMonthlyTrend([12, 14, 13, 15, 14, 16, 15, 17, 16, 17, 18, 18]),
   },
   {
     label: 'Nhiệm vụ đã hoàn thành',
     value: 12,
     change: 9.1,
     changeLabel: 'so với hôm qua',
+    monthlyTrend: buildMonthlyTrend([8, 9, 8, 10, 9, 10, 11, 10, 11, 11, 12, 12]),
   },
   {
     label: 'Nhiệm vụ đang chờ',
     value: 6,
     change: -2,
     changeLabel: 'so với hôm qua',
+    monthlyTrend: buildMonthlyTrend([9, 8, 9, 7, 8, 7, 6, 7, 6, 6, 5, 6]),
   },
   {
     label: 'Độ chính xác của tôi',
     value: '98,7%',
     change: 0.3,
     changeLabel: 'so với tuần trước',
+    monthlyTrend: buildMonthlyTrend([
+      96.5, 96.8, 97.0, 97.2, 97.5, 97.7, 97.9, 98.0, 98.2, 98.4, 98.5, 98.7,
+    ]),
   },
 ]
 

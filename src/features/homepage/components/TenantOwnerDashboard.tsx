@@ -1,11 +1,14 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import type { DateRange } from 'react-day-picker'
 import { MetricCard } from './MetricCard'
-import { QuickActionsSection } from './QuickActionsSection'
+import { QuickActionsBar } from './QuickActionsBar'
 import { WarehouseStatsCard } from './WarehouseStatsCard'
 import { WarehouseFilter, ALL_WAREHOUSES_VALUE } from './WarehouseFilter'
+import { DateRangeFilter } from './DateRangeFilter'
 import { LogisticsFluxChart } from './LogisticsFluxChart'
+import { WarehouseRevenueDonutChart } from './WarehouseRevenueDonutChart'
 import { RecentOperationsTable } from './RecentOperationsTable'
 import { AlertCard } from './AlertCard'
 import { LowStockTable } from './LowStockTable'
@@ -18,9 +21,11 @@ import {
   recentOperations,
   lowStockItems,
 } from '../utils/sample-data'
+import { getDefaultMetricsDateRange, filterMetricsByDateRange } from '../utils/date-range'
 
 export function TenantOwnerDashboard() {
   const [selectedWarehouseId, setSelectedWarehouseId] = useState(ALL_WAREHOUSES_VALUE)
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(getDefaultMetricsDateRange())
 
   const filteredWarehouses = useMemo(
     () =>
@@ -30,19 +35,34 @@ export function TenantOwnerDashboard() {
     [selectedWarehouseId]
   )
 
+  const filteredMetrics = useMemo(
+    () => filterMetricsByDateRange(tenantOwnerMetrics, dateRange),
+    [dateRange]
+  )
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <FadeIn>
-        <h1 className="text-foreground text-2xl font-bold">Bảng điều khiển vận hành kho</h1>
-        <p className="text-muted-foreground mt-1 text-sm">
-          Tổng quan chuỗi cung ứng theo thời gian thực cho tất cả các kho
-        </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 className="text-foreground text-2xl font-bold">Bảng điều khiển vận hành kho</h1>
+            <p className="text-muted-foreground mt-1 text-sm">
+              Tổng quan chuỗi cung ứng theo thời gian thực cho tất cả các kho
+            </p>
+          </div>
+          <DateRangeFilter value={dateRange} onChange={setDateRange} />
+        </div>
+      </FadeIn>
+
+      {/* Quick Actions */}
+      <FadeIn delay={0.05}>
+        <QuickActionsBar actions={tenantOwnerQuickActions} />
       </FadeIn>
 
       {/* Key Metrics */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {tenantOwnerMetrics.map((metric, index) => (
+        {filteredMetrics.map((metric, index) => (
           <FadeIn key={metric.label} delay={0.05 + index * 0.05}>
             <MetricCard metric={metric} />
           </FadeIn>
@@ -59,14 +79,14 @@ export function TenantOwnerDashboard() {
         />
       </FadeIn>
 
-      {/* Charts and Quick Actions Row */}
+      {/* Charts Row */}
       <FadeIn delay={0.35}>
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <LogisticsFluxChart data={chartData} />
           </div>
           <div className="lg:col-span-1">
-            <QuickActionsSection actions={tenantOwnerQuickActions} />
+            <WarehouseRevenueDonutChart warehouses={warehouseStats} />
           </div>
         </div>
       </FadeIn>

@@ -31,7 +31,7 @@ src/features/homepage/
   │   ├── AlertCard.tsx
   │   ├── LowStockTable.tsx
   │   ├── StaffTaskTable.tsx
-  │   ├── QuickActionsSection.tsx
+  │   ├── QuickActionsBar.tsx
   │   ├── WarehouseStatsCard.tsx
   │   ├── WarehouseFilter.tsx             # Tenant-only warehouse selector
   │   ├── FadeIn.tsx                      # Shared entrance-animation wrapper (framer-motion)
@@ -53,7 +53,7 @@ Company-wide view: Total Products, Total Inventory, Pending Orders, Daily Revenu
 
 ### Warehouse Manager (`/dashboard/manager`)
 
-Same layout shape as Tenant Owner but scoped to a single warehouse — no cross-warehouse aggregation, no filter, no revenue figure.
+Same layout shape as Tenant Owner but scoped to a single warehouse — no cross-warehouse aggregation, no filter. Shows a revenue-vs-target bubble chart for its own warehouse instead of the Tenant's per-warehouse breakdown.
 
 ### Warehouse Staff (`/dashboard/staff`)
 
