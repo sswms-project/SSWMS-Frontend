@@ -5,8 +5,9 @@ import { APP_ROUTES } from '@/routes/app-routes'
 export function getDashboardRouteForRole(role: UserRole): Route {
   switch (role) {
     case USER_ROLES.TenantOwner:
-    case USER_ROLES.SystemAdmin:
       return APP_ROUTES.dashboardByRole.tenant as Route
+    case USER_ROLES.SystemAdmin:
+      return APP_ROUTES.admin.roles as Route
     case USER_ROLES.WarehouseManager:
       return APP_ROUTES.dashboardByRole.manager as Route
     case USER_ROLES.WarehouseStaff:

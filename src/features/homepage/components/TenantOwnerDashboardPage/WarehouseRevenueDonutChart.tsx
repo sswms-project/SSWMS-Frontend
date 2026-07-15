@@ -1,5 +1,5 @@
-import { RevenueDonutChart, type RevenueDonutDatum } from './RevenueDonutChart'
-import type { WarehouseStats } from '../types'
+import { RevenueDonutChart, type RevenueDonutDatum } from '../RevenueDonutChart'
+import type { WarehouseStats } from '../../types'
 
 interface WarehouseRevenueDonutChartProps {
   warehouses: WarehouseStats[]

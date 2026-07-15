@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import type { WarehouseStats } from '../types'
+import type { WarehouseStats } from '../../types'
 
 export const ALL_WAREHOUSES_VALUE = 'all'
 

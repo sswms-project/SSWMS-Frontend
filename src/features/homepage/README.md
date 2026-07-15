@@ -4,38 +4,50 @@ Role-based operations dashboards for the SSWMS system, each on its own route.
 
 ## Routes
 
-| Role                        | Route                |
-| --------------------------- | -------------------- |
-| Tenant Owner / System Admin | `/dashboard/tenant`  |
-| Warehouse Manager           | `/dashboard/manager` |
-| Warehouse Staff             | `/dashboard/staff`   |
+| Role              | Route                |
+| ----------------- | -------------------- |
+| Tenant Owner      | `/dashboard/tenant`  |
+| Warehouse Manager | `/dashboard/manager` |
+| Warehouse Staff   | `/dashboard/staff`   |
+| System Admin      | `/admin/roles`       |
 
-`/dashboard` itself renders `DashboardRedirect`, which reads the logged-in user's role and replaces the URL with the route above. Each role route is wrapped in `RoleGuard`, which redirects a user to their own dashboard if they land on a route that doesn't match their role.
+`/dashboard` itself renders `DashboardRedirect`, which reads the logged-in user's role and replaces the URL with the route above. Each role route is wrapped in `RoleGuard`, which redirects a user to their own dashboard if they land on a route that doesn't match their role. `RoleGuard` is a UI convenience only — the real enforcement is server-side in `src/proxy.ts`, which decodes the role from the `access_token` cookie and checks it against `src/config/route-permissions.ts` before the page is served (mismatches are redirected to `/unauthorized`).
 
 ## Structure
 
 ```
 src/features/homepage/
-  ├── components/
-  │   ├── DashboardRedirect.tsx          # /dashboard entry: redirects by role
-  │   ├── RoleGuard.tsx                  # Blocks/redirects mismatched roles
+  ├── pages/
+  │   ├── DashboardRedirect.tsx           # /dashboard entry: redirects by role
   │   ├── TenantOwnerDashboardPage.tsx    # RoleGuard + TenantOwnerDashboard
   │   ├── WarehouseManagerDashboardPage.tsx
   │   ├── WarehouseStaffDashboardPage.tsx
-  │   ├── TenantOwnerDashboard.tsx        # Multi-warehouse view + warehouse filter
-  │   ├── WarehouseManagerDashboard.tsx   # Single-warehouse operational view
-  │   ├── WarehouseStaffDashboard.tsx     # Task-only view, no business figures
+  │   └── index.ts
+  ├── components/
+  │   ├── TenantOwnerDashboardPage/
+  │   │   ├── TenantOwnerDashboard.tsx    # Multi-warehouse view + warehouse filter
+  │   │   ├── WarehouseCapacitySection.tsx # Capacity cards + warehouse filter section
+  │   │   ├── WarehouseFilter.tsx         # Tenant-only warehouse selector
+  │   │   └── WarehouseRevenueDonutChart.tsx
+  │   ├── WarehouseManagerDashboardPage/
+  │   │   ├── WarehouseManagerDashboard.tsx # Single-warehouse operational view
+  │   │   └── RevenueTargetDonutChart.tsx
+  │   ├── WarehouseStaffDashboardPage/
+  │   │   ├── WarehouseStaffDashboard.tsx # Task-only view, no business figures
+  │   │   └── StaffTaskTable.tsx
+  │   ├── RoleGuard.tsx                   # Client-side blocks/redirects mismatched roles
+  │   ├── DashboardHeader.tsx             # Shared title/description/actions header
   │   ├── MetricCard.tsx
+  │   ├── MetricCardGrid.tsx              # Shared staggered KPI card grid
   │   ├── LogisticsFluxChart.tsx
+  │   ├── RevenueDonutChart.tsx           # Shared donut base for revenue charts
   │   ├── RecentOperationsTable.tsx
   │   ├── AlertCard.tsx
   │   ├── LowStockTable.tsx
-  │   ├── StaffTaskTable.tsx
   │   ├── QuickActionsBar.tsx
   │   ├── WarehouseStatsCard.tsx
-  │   ├── WarehouseFilter.tsx             # Tenant-only warehouse selector
-  │   ├── FadeIn.tsx                      # Shared entrance-animation wrapper (framer-motion)
-  │   └── index.ts
+  │   ├── DateRangeFilter.tsx
+  │   └── FadeIn.tsx                      # Shared entrance-animation wrapper (framer-motion)
   ├── types/index.ts
   ├── utils/
   │   ├── sample-data.ts

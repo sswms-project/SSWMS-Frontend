@@ -2,16 +2,17 @@
 
 import { useMemo, useState } from 'react'
 import type { DateRange } from 'react-day-picker'
-import { MetricCard } from './MetricCard'
-import { QuickActionsBar } from './QuickActionsBar'
-import { WarehouseStatsCard } from './WarehouseStatsCard'
-import { DateRangeFilter } from './DateRangeFilter'
-import { LogisticsFluxChart } from './LogisticsFluxChart'
+import { DashboardHeader } from '../DashboardHeader'
+import { MetricCardGrid } from '../MetricCardGrid'
+import { QuickActionsBar } from '../QuickActionsBar'
+import { WarehouseStatsCard } from '../WarehouseStatsCard'
+import { DateRangeFilter } from '../DateRangeFilter'
+import { LogisticsFluxChart } from '../LogisticsFluxChart'
 import { RevenueTargetDonutChart } from './RevenueTargetDonutChart'
-import { RecentOperationsTable } from './RecentOperationsTable'
-import { AlertCard } from './AlertCard'
-import { LowStockTable } from './LowStockTable'
-import { FadeIn } from './FadeIn'
+import { RecentOperationsTable } from '../RecentOperationsTable'
+import { AlertCard } from '../AlertCard'
+import { LowStockTable } from '../LowStockTable'
+import { FadeIn } from '../FadeIn'
 import {
   warehouseManagerMetrics,
   warehouseManagerQuickActions,
@@ -19,8 +20,8 @@ import {
   chartData,
   recentOperations,
   lowStockItems,
-} from '../utils/sample-data'
-import { getDefaultMetricsDateRange, filterMetricsByDateRange } from '../utils/date-range'
+} from '../../utils/sample-data'
+import { getDefaultMetricsDateRange, filterMetricsByDateRange } from '../../utils/date-range'
 
 export function WarehouseManagerDashboard() {
   const managerWarehouse = warehouseStats.slice(0, 1)
@@ -36,34 +37,20 @@ export function WarehouseManagerDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <FadeIn>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 className="text-foreground text-2xl font-bold">Bảng điều khiển vận hành kho</h1>
-            <p className="text-muted-foreground mt-1 text-sm">
-              Tổng quan vận hành theo thời gian thực tại Kho Chính
-            </p>
-          </div>
-          <DateRangeFilter value={dateRange} onChange={setDateRange} />
-        </div>
+        <DashboardHeader
+          title="Bảng điều khiển vận hành kho"
+          description="Tổng quan vận hành theo thời gian thực tại Kho Chính"
+          actions={<DateRangeFilter value={dateRange} onChange={setDateRange} />}
+        />
       </FadeIn>
 
-      {/* Quick Actions */}
       <FadeIn delay={0.05}>
         <QuickActionsBar actions={warehouseManagerQuickActions} />
       </FadeIn>
 
-      {/* Key Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {filteredMetrics.map((metric, index) => (
-          <FadeIn key={metric.label} delay={0.05 + index * 0.05}>
-            <MetricCard metric={metric} />
-          </FadeIn>
-        ))}
-      </div>
+      <MetricCardGrid metrics={filteredMetrics} />
 
-      {/* Alert Card */}
       <FadeIn delay={0.3}>
         <AlertCard
           type="warning"
@@ -73,7 +60,6 @@ export function WarehouseManagerDashboard() {
         />
       </FadeIn>
 
-      {/* Charts Row */}
       <FadeIn delay={0.35}>
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
@@ -88,12 +74,10 @@ export function WarehouseManagerDashboard() {
         </div>
       </FadeIn>
 
-      {/* Recent Operations */}
       <FadeIn delay={0.4}>
         <RecentOperationsTable operations={recentOperations} />
       </FadeIn>
 
-      {/* Low Stock and Warehouse Status */}
       <div className="grid gap-6 lg:grid-cols-2">
         <FadeIn delay={0.45}>
           <LowStockTable items={lowStockItems} />

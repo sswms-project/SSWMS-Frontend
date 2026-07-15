@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import type { StaffTask } from '../types'
+import type { StaffTask } from '../../types'
 
 interface StaffTaskTableProps {
   tasks: StaffTask[]
