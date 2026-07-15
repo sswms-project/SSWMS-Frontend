@@ -136,7 +136,7 @@ export function RolePermissionEditor({ role }: RolePermissionEditorProps) {
           <Shield className="size-3.5" aria-hidden="true" />
           {assignMutation.isPending ? 'Đang lưu...' : 'Lưu thay đổi'}
         </Button>
-        {isDirty && <p className="text-xs text-amber-600">Có thay đổi chưa được lưu</p>}
+        {isDirty && <p className="text-on-primary-container text-xs">Có thay đổi chưa được lưu</p>}
       </div>
     </div>
   )

@@ -1,7 +1,6 @@
 'use client'
-
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import { APP_ROUTES } from '@/routes/app-routes'
 import { useAuthStore } from '@/stores/auth.store'
 
@@ -31,6 +30,5 @@ export function ProtectedRoute({ children }: { readonly children: React.ReactNod
   }
 
   if (!user) return null
-
   return <>{children}</>
 }
