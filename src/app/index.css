@@ -28,7 +28,7 @@
 }
 
 /*
- * Global green palette — "Fresh Logistics". Derived from the brand reference:
+ * Global green palette - "Fresh Logistics". Derived from the brand reference:
  * mint #B0F0B0 / #C0F0C0, neon #60F040, deep green #2E5A2A, ink #18232F.
  * Product pages use the calmer, darker mixes below; the marketing landing
  * page brightens them via the .theme-home scope.
@@ -217,6 +217,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --font-logo: var(--font-baloo);
