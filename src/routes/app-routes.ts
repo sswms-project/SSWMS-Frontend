@@ -16,4 +16,7 @@ export const APP_ROUTES = {
   admin: {
     roles: '/admin/roles',
   },
+  settings: {
+    security: '/settings/security',
+  },
 } as const

@@ -8,5 +8,12 @@ export const API_ENDPOINTS = {
     logout: '/auth/logout',
     forgotPassword: '/auth/forgot-password',
     resetPassword: '/auth/reset-password',
+    me: '/auth/me',
+  },
+  // Authenticated endpoints
+  settings: {
+    setup2fa: '/settings/2fa/setup',
+    confirm2fa: '/settings/2fa/confirm',
+    disable2fa: '/settings/2fa',
   },
 } as const

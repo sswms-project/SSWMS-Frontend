@@ -10,6 +10,7 @@ import type {
   RegisterResponseDto,
   ResetPasswordRequestDto,
   ResetPasswordResponseDto,
+  UserProfileResponse,
   VerifyEmailResponseDto,
 } from '../types/auth.types'
 
@@ -40,4 +41,7 @@ export const authService = {
     axiosClient
       .post<ApiResponse<ResetPasswordResponseDto>>(API_ENDPOINTS.auth.resetPassword, body)
       .then((r) => r.data),
+
+  getMe: () =>
+    axiosClient.get<ApiResponse<UserProfileResponse>>(API_ENDPOINTS.auth.me).then((r) => r.data),
 }
