@@ -1,6 +1,6 @@
 import type { Route } from 'next'
 import Link from 'next/link'
-import { Boxes, LayoutDashboard, Package, Truck, Warehouse } from 'lucide-react'
+import { Boxes, LayoutDashboard, Package, Settings, Truck, Warehouse } from 'lucide-react'
 import { Logo } from '@/components/Logo'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { APP_ROUTES } from '@/routes/app-routes'
@@ -12,6 +12,7 @@ const navigation = [
   { href: APP_ROUTES.inventory, label: 'Inventory', icon: Boxes },
   { href: APP_ROUTES.orders, label: 'Orders', icon: Package },
   { href: APP_ROUTES.delivery, label: 'Delivery', icon: Truck },
+  { href: APP_ROUTES.settings.security, label: 'Cài đặt', icon: Settings },
 ]
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {

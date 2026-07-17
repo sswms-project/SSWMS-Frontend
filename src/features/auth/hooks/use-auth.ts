@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
+import { queryKeys } from '@/lib/query-keys'
 import type { ApiErrorResponse, ApiResponse } from '@/types/api'
 import { authService } from '../services/auth.service'
 import type {
@@ -10,6 +11,7 @@ import type {
   RegisterResponseDto,
   ResetPasswordRequestDto,
   ResetPasswordResponseDto,
+  UserProfileResponse,
   Verify2FARequestDto,
   VerifyEmailResponseDto,
 } from '../types/auth.types'
@@ -76,6 +78,13 @@ export function useResetPassword() {
       logAuthError('reset password', error)
       toast.error(error.message ?? 'Không thể đặt lại mật khẩu. Vui lòng thử lại.')
     },
+  })
+}
+
+export function useMeQuery() {
+  return useQuery<UserProfileResponse, ApiErrorResponse>({
+    queryKey: queryKeys.auth.me,
+    queryFn: () => authService.getMe().then((r) => r.data),
   })
 }
 

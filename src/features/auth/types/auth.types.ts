@@ -54,3 +54,17 @@ export interface ResetPasswordRequestDto {
 }
 
 export type ResetPasswordResponseDto = unknown
+
+export interface UserProfileResponse {
+  id: string
+  tenantId: string
+  fullName: string
+  email: string
+  phone: string | null
+  role: string | null
+  status: string
+  lastLoginAt: string | null
+  emailVerified: boolean
+  phoneVerified: boolean
+  isTwoFactorEnabled: boolean
+}
