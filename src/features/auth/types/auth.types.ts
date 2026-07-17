@@ -15,11 +15,16 @@ export interface LoginRequestDto {
 }
 
 export interface LoginResponseDto {
-  accessToken: string
-  refreshToken: string
+  accessToken: string | null
+  refreshToken: string | null
   expiresIn: number
   requires2FA: boolean
   tempToken: string | null
+}
+
+export interface Verify2FARequestDto {
+  tempToken: string
+  otp: string
 }
 
 export interface RegisterRequestDto {
