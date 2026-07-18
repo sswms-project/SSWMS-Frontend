@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Route } from 'next'
 import * as Icons from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import type { QuickAction } from '../types'
+import type { QuickAction } from '../../types'
 
 interface QuickActionsBarProps {
   actions: QuickAction[]

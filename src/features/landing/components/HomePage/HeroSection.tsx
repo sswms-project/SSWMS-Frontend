@@ -26,7 +26,7 @@ const WarehouseScene3D = dynamic(
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotion() === true
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

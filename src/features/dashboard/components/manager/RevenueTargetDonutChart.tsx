@@ -1,4 +1,4 @@
-import { RevenueDonutChart, type RevenueDonutDatum } from '../RevenueDonutChart'
+import { RevenueDonutChart, type RevenueDonutDatum } from '../shared/RevenueDonutChart'
 
 interface RevenueTargetDonutChartProps {
   revenue: number

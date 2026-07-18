@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
-import type { WarehouseStats } from '../types'
+import type { WarehouseStats } from '../../types'
 
 interface WarehouseStatsCardProps {
   warehouse: WarehouseStats

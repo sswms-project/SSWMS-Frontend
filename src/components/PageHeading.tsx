@@ -17,6 +17,8 @@ export function PageHeading() {
   const match = pageTitles.find((item) => pathname.startsWith(item.prefix))
 
   return (
-    <h1 className="text-foreground text-2xl font-semibold">{match?.label ?? 'Bảng điều khiển'}</h1>
+    <h1 className="text-foreground text-[15px] font-semibold">
+      {match?.label ?? 'Bảng điều khiển'}
+    </h1>
   )
 }

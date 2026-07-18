@@ -1,8 +1,8 @@
 'use client'
 
 import { USER_ROLES } from '@/config/roles'
-import { RoleGuard } from '../components/RoleGuard'
-import { WarehouseManagerDashboard } from '../components/WarehouseManagerDashboardPage'
+import { RoleGuard } from '../components/shared/RoleGuard'
+import { WarehouseManagerDashboard } from '../components/manager/WarehouseManagerDashboard'
 
 export function WarehouseManagerDashboardPage() {
   return (

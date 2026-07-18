@@ -42,14 +42,14 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="hover:bg-muted flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors"
+          className="hover:bg-muted flex items-center gap-2 rounded-md px-2 py-1 transition-colors"
         >
           <Avatar>
             <AvatarFallback>{getInitials(user.fullName)}</AvatarFallback>
           </Avatar>
           <div className="hidden text-left sm:block">
-            <p className="text-foreground text-sm leading-tight font-medium">{user.fullName}</p>
-            <p className="text-muted-foreground text-xs leading-tight">
+            <p className="text-foreground text-[13px] leading-tight font-medium">{user.fullName}</p>
+            <p className="text-muted-foreground text-[11px] leading-tight">
               {ROLE_LABELS_VI[user.role]}
             </p>
           </div>

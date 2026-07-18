@@ -1,4 +1,4 @@
-import type { DashboardMetric, MetricTrendPoint } from '../types'
+import type { DashboardMetric, MetricTrendPoint } from '../../types'
 import { Card } from '@/components/ui/card'
 import { TrendingUp, TrendingDown } from 'lucide-react'
 import { AnimatedMetricValue } from './AnimatedMetricValue'

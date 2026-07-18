@@ -1,4 +1,4 @@
-import { WarehouseStaffDashboardPage } from '@/features/homepage/pages/WarehouseStaffDashboardPage'
+import { WarehouseStaffDashboardPage } from '@/features/dashboard/pages/WarehouseStaffDashboardPage'
 
 export default function Page() {
   return <WarehouseStaffDashboardPage />

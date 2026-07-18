@@ -1,4 +1,4 @@
-import { WarehouseManagerDashboardPage } from '@/features/homepage/pages/WarehouseManagerDashboardPage'
+import { WarehouseManagerDashboardPage } from '@/features/dashboard/pages/WarehouseManagerDashboardPage'
 
 export default function Page() {
   return <WarehouseManagerDashboardPage />

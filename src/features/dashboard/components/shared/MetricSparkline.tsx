@@ -1,7 +1,7 @@
 'use client'
 
 import { Line, LineChart, ResponsiveContainer } from 'recharts'
-import type { MetricTrendPoint } from '../types'
+import type { MetricTrendPoint } from '../../types'
 
 interface MetricSparklineProps {
   data: MetricTrendPoint[]

@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import type { WarehouseStats } from '../../types'
 import { WarehouseFilter, ALL_WAREHOUSES_VALUE } from './WarehouseFilter'
-import { WarehouseStatsCard } from '../WarehouseStatsCard'
+import { WarehouseStatsCard } from '../shared/WarehouseStatsCard'
 
 interface WarehouseCapacitySectionProps {
   warehouses: WarehouseStats[]
