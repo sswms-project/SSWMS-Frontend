@@ -21,7 +21,7 @@ export function MetricCard({ metric }: MetricCardProps) {
   const sparklineTrend = getSparklineTrend(trendPoints, isPositiveChange)
 
   return (
-    <Card className="border-border bg-card hover:ring-primary/30 p-6 transition-shadow duration-200">
+    <Card className="border-border bg-card hover:ring-primary/30 p-4 transition-shadow duration-200 sm:p-5 lg:p-6">
       <div className="flex h-full flex-col space-y-4">
         <div className="flex items-start justify-between">
           <p className="text-muted-foreground line-clamp-2 min-h-10 text-sm font-semibold tracking-wide uppercase">
@@ -30,10 +30,10 @@ export function MetricCard({ metric }: MetricCardProps) {
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-end justify-between gap-3">
+          <div className="flex min-w-0 items-end justify-between gap-3">
             <AnimatedMetricValue
               value={metric.value}
-              className="text-foreground text-4xl font-bold"
+              className="text-foreground min-w-0 text-3xl font-bold sm:text-4xl"
             />
             {trendPoints && trendPoints.length > 1 && (
               <MetricSparkline data={trendPoints} trend={sparklineTrend} />
@@ -54,9 +54,7 @@ export function MetricCard({ metric }: MetricCardProps) {
                 {metric.change}%
               </span>
               {metric.changeLabel && (
-                <span className="text-muted-foreground text-xs whitespace-nowrap">
-                  {metric.changeLabel}
-                </span>
+                <span className="text-muted-foreground min-w-0 text-xs">{metric.changeLabel}</span>
               )}
             </div>
           )}

@@ -27,10 +27,10 @@ const typeIcons = {
 export function RecentOperationsTable({ operations }: RecentOperationsTableProps) {
   return (
     <Card className="border-border bg-card">
-      <div className="border-border border-b px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className="border-border border-b px-4 py-4 sm:px-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h3 className="text-foreground text-lg font-semibold">Hoạt động gần đây</h3>
-          <Button variant="ghost" size="sm" className="text-primary">
+          <Button variant="ghost" size="sm" className="text-primary w-fit">
             Xem tất cả nhật ký
             <ArrowRight className="ml-2 size-4" />
           </Button>
@@ -45,7 +45,7 @@ export function RecentOperationsTable({ operations }: RecentOperationsTableProps
           return (
             <div
               key={op.id}
-              className="border-border hover:bg-muted/30 flex items-start gap-4 px-6 py-4 transition-colors"
+              className="border-border hover:bg-muted/30 flex items-start gap-3 px-4 py-4 transition-colors sm:gap-4 sm:px-6"
             >
               <div className="mt-1 flex-shrink-0">
                 <div className="bg-primary/10 rounded-md p-2">
@@ -54,12 +54,12 @@ export function RecentOperationsTable({ operations }: RecentOperationsTableProps
               </div>
 
               <div className="flex-grow">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                   <div className="min-w-0 flex-1">
                     <p className="text-foreground font-semibold">{op.title}</p>
                     <p className="text-muted-foreground mt-1 text-sm">{op.description}</p>
                   </div>
-                  <div className="flex flex-shrink-0 flex-col items-end gap-2">
+                  <div className="flex flex-shrink-0 flex-wrap items-center gap-2 sm:flex-col sm:items-end">
                     <p className="text-muted-foreground text-xs font-medium">{op.timestamp}</p>
                     <Badge className={`border-0 ${statusStyle.bg} ${statusStyle.text}`}>
                       {statusStyle.label}

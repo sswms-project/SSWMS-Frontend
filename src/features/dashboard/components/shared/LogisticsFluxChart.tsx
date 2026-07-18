@@ -13,10 +13,10 @@ interface LogisticsFluxChartProps {
 
 export function LogisticsFluxChart({ data }: LogisticsFluxChartProps) {
   return (
-    <Card className="border-border bg-card p-6">
-      <div className="mb-6 flex items-center justify-between">
+    <Card className="border-border bg-card p-4 sm:p-5 lg:p-6">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h3 className="text-foreground text-lg font-semibold">Dự báo AI: Luồng hàng hóa</h3>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-2 text-xs">
             <span className="bg-chart-1 h-3 w-3 rounded" />
             Nhập kho
@@ -27,7 +27,7 @@ export function LogisticsFluxChart({ data }: LogisticsFluxChartProps) {
           </span>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis dataKey="day" stroke="var(--muted-foreground)" />

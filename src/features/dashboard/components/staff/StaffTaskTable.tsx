@@ -23,27 +23,27 @@ const taskTypeLabels = {
 export function StaffTaskTable({ tasks }: StaffTaskTableProps) {
   return (
     <Card className="border-border bg-card">
-      <div className="border-border border-b px-6 py-4">
+      <div className="border-border border-b px-4 py-4 sm:px-6">
         <h3 className="text-foreground text-lg font-semibold">Công việc của tôi</h3>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full min-w-[640px]">
           <thead>
             <tr className="border-border border-b">
-              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-semibold uppercase">
+              <th className="text-muted-foreground px-4 py-3 text-left text-xs font-semibold uppercase sm:px-6">
                 Công việc
               </th>
-              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-semibold uppercase">
+              <th className="text-muted-foreground px-4 py-3 text-left text-xs font-semibold uppercase sm:px-6">
                 SKU
               </th>
-              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-semibold uppercase">
+              <th className="text-muted-foreground px-4 py-3 text-left text-xs font-semibold uppercase sm:px-6">
                 Vị trí
               </th>
-              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-semibold uppercase">
+              <th className="text-muted-foreground px-4 py-3 text-left text-xs font-semibold uppercase sm:px-6">
                 Hạn hoàn thành
               </th>
-              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-semibold uppercase">
+              <th className="text-muted-foreground px-4 py-3 text-left text-xs font-semibold uppercase sm:px-6">
                 Trạng thái
               </th>
             </tr>
@@ -56,13 +56,19 @@ export function StaffTaskTable({ tasks }: StaffTaskTableProps) {
                   key={task.id}
                   className="border-border hover:bg-muted/30 border-b transition-colors"
                 >
-                  <td className="text-foreground px-6 py-4 text-sm font-semibold">
+                  <td className="text-foreground px-4 py-4 text-sm font-semibold sm:px-6">
                     {taskTypeLabels[task.type]}
                   </td>
-                  <td className="text-foreground px-6 py-4 font-mono text-sm">{task.sku}</td>
-                  <td className="text-muted-foreground px-6 py-4 text-xs">{task.location}</td>
-                  <td className="text-muted-foreground px-6 py-4 text-xs">{task.dueTime}</td>
-                  <td className="px-6 py-4">
+                  <td className="text-foreground px-4 py-4 font-mono text-sm sm:px-6">
+                    {task.sku}
+                  </td>
+                  <td className="text-muted-foreground px-4 py-4 text-xs sm:px-6">
+                    {task.location}
+                  </td>
+                  <td className="text-muted-foreground px-4 py-4 text-xs sm:px-6">
+                    {task.dueTime}
+                  </td>
+                  <td className="px-4 py-4 sm:px-6">
                     <Badge
                       className={`${statusStyle.bg} ${statusStyle.text} border-0 text-xs font-semibold`}
                     >

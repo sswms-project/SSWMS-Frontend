@@ -26,7 +26,7 @@ export function RevenueDonutChart({
   centerContent,
 }: RevenueDonutChartProps) {
   return (
-    <Card className="border-border bg-card p-6">
+    <Card className="border-border bg-card p-4 sm:p-5 lg:p-6">
       <div className="mb-4">
         <h3 className="text-foreground text-lg font-semibold">{title}</h3>
         <p className="text-muted-foreground text-sm">{subtitle}</p>
@@ -63,16 +63,16 @@ export function RevenueDonutChart({
       </div>
       <ul className="mt-2 space-y-1.5">
         {data.map((item) => (
-          <li key={item.id} className="flex items-center justify-between text-sm">
-            <span className="flex items-center gap-2">
+          <li key={item.id} className="flex min-w-0 items-center justify-between gap-3 text-sm">
+            <span className="flex min-w-0 items-center gap-2">
               <span
                 className="size-2.5 shrink-0 rounded-full"
                 style={{ backgroundColor: item.color }}
                 aria-hidden="true"
               />
-              <span className="text-foreground">{item.label}</span>
+              <span className="text-foreground truncate">{item.label}</span>
             </span>
-            <span className="text-muted-foreground">{formatValue(item.value)}</span>
+            <span className="text-muted-foreground shrink-0">{formatValue(item.value)}</span>
           </li>
         ))}
       </ul>
