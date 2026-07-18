@@ -17,6 +17,7 @@ import { CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { useIsMobile } from '@/hooks/use-mobile'
 import { cn } from '@/lib/utils'
 
 interface DateRangeFilterProps {
@@ -65,6 +66,7 @@ function isSameRange(a: DateRange | undefined, b: DateRange | undefined) {
 export function DateRangeFilter({ value, onChange }: DateRangeFilterProps) {
   const [open, setOpen] = useState(false)
   const [pending, setPending] = useState<DateRange | undefined>(value)
+  const isMobile = useIsMobile()
 
   function handleOpenChange(nextOpen: boolean) {
     if (nextOpen) setPending(value)
@@ -89,9 +91,9 @@ export function DateRangeFilter({ value, onChange }: DateRangeFilterProps) {
           <span className="truncate">{formatRangeLabel(value)}</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="end">
-        <div className="flex">
-          <div className="border-border flex w-36 shrink-0 flex-col gap-0.5 border-r p-2">
+      <PopoverContent className="w-auto max-w-[calc(100vw-2rem)] overflow-x-auto p-0" align="end">
+        <div className="flex max-w-full flex-col sm:flex-row">
+          <div className="border-border grid grid-cols-2 gap-0.5 border-b p-2 sm:flex sm:w-36 sm:shrink-0 sm:flex-col sm:border-r sm:border-b-0">
             {QUICK_RANGES.map((preset) => {
               const presetRange = preset.getRange()
               const isActive = isSameRange(pending, presetRange)
@@ -113,20 +115,20 @@ export function DateRangeFilter({ value, onChange }: DateRangeFilterProps) {
               )
             })}
           </div>
-          <div>
+          <div className="min-w-0">
             <Calendar
               mode="range"
               selected={pending}
               onSelect={setPending}
-              numberOfMonths={2}
+              numberOfMonths={isMobile ? 1 : 2}
               locale={vi}
               defaultMonth={pending?.from}
             />
-            <div className="border-border flex items-center justify-between gap-3 border-t p-3">
-              <span className="text-muted-foreground text-xs">
+            <div className="border-border flex flex-col gap-3 border-t p-3 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-muted-foreground min-w-0 text-xs">
                 {pending?.from ? `Khoảng: ${formatRangeLabel(pending)}` : 'Chưa chọn khoảng ngày'}
               </span>
-              <div className="flex shrink-0 gap-2">
+              <div className="flex shrink-0 gap-2 sm:justify-end">
                 <Button variant="outline" size="sm" onClick={handleCancel}>
                   Hủy
                 </Button>

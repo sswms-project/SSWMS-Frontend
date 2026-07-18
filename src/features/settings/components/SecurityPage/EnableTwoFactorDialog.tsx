@@ -158,7 +158,7 @@ export function EnableTwoFactorDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="sm:max-w-md"
+        className="max-w-[calc(100vw-2rem)] sm:max-w-md"
         onEscapeKeyDown={(event) => {
           if (isBusy) event.preventDefault()
         }}
@@ -229,10 +229,10 @@ export function EnableTwoFactorDialog() {
         {step === 'setupReady' && secret && qrUri && (
           <form onSubmit={handleSubmit(handleConfirm)} className="space-y-5">
             <div className="flex flex-col items-center gap-3">
-              <div className="border-border bg-card rounded-md border p-3">
+              <div className="border-border bg-card max-w-full rounded-md border p-3">
                 <QRCodeSVG value={qrUri} size={168} />
               </div>
-              <div className="border-border bg-card flex w-full items-center justify-between gap-2 rounded-md border px-3 py-2">
+              <div className="border-border bg-card flex w-full min-w-0 items-center justify-between gap-2 rounded-md border px-3 py-2">
                 <code className="text-foreground truncate font-mono text-xs">{secret}</code>
                 <Button
                   type="button"

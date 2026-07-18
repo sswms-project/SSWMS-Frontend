@@ -10,9 +10,9 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
       <TooltipProvider>
         <SidebarProvider>
           <AppSidebar />
-          <SidebarInset>
+          <SidebarInset className="min-w-0 overflow-x-hidden">
             <AppHeader />
-            <div className="flex-1 p-5">
+            <div className="min-w-0 flex-1 p-3 sm:p-4 lg:p-5">
               <PageTransition>{children}</PageTransition>
             </div>
           </SidebarInset>

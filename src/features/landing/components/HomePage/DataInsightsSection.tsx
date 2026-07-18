@@ -132,11 +132,11 @@ export function DataInsightsSection() {
           </Card>
 
           <div className="flex flex-col gap-5">
-            <div className="grid grid-cols-3 gap-5 lg:grid-cols-1 xl:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
               {operationHighlights.map((highlight) => (
                 <Card key={highlight.label} className="border-border/70 gap-0 py-4">
                   <CardContent className="px-4">
-                    <p className="text-primary font-mono text-2xl font-semibold">
+                    <p className="text-primary font-mono text-xl font-semibold sm:text-2xl">
                       {highlight.value}
                     </p>
                     <p className="text-muted-foreground mt-1 text-[11px] leading-snug font-semibold tracking-wide uppercase">

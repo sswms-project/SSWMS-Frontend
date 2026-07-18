@@ -145,7 +145,7 @@ export function PricingSection() {
 
         {/* Billing cycle toggle */}
         <div
-          className="border-border bg-card mb-10 inline-flex items-center gap-1 rounded-full border p-1"
+          className="border-border bg-card mb-10 inline-flex max-w-full flex-wrap items-center gap-1 rounded-full border p-1"
           role="group"
           aria-label="Chọn chu kỳ thanh toán"
         >
@@ -165,7 +165,7 @@ export function PricingSection() {
           >
             Theo năm
           </button>
-          <Badge className="bg-primary-container text-on-primary-container mx-1 border-transparent">
+          <Badge className="bg-primary-container text-on-primary-container mx-1 max-w-full border-transparent">
             Tiết kiệm {ANNUAL_DISCOUNT_PERCENT}%
           </Badge>
         </div>
@@ -206,7 +206,7 @@ export function PricingSection() {
                     </div>
                     <CardTitle className="text-lg">{plan.name}</CardTitle>
                     <CardDescription>{plan.description}</CardDescription>
-                    <p className="mt-3 flex items-baseline gap-2">
+                    <p className="mt-3 flex flex-wrap items-baseline gap-2">
                       <PriceDisplay plan={plan} billingCycle={billingCycle} />
                       <span className="text-muted-foreground text-xs">{plan.priceNote}</span>
                     </p>

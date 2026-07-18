@@ -24,7 +24,7 @@ export function OperationsDashboard() {
           return (
             <article
               key={metric.label}
-              className="border-border bg-card rounded-lg border p-5 shadow-sm"
+              className="border-border bg-card rounded-lg border p-4 shadow-sm sm:p-5"
             >
               <div className="flex items-center justify-between">
                 <p className="text-muted-foreground text-sm font-medium">{metric.label}</p>
@@ -38,19 +38,22 @@ export function OperationsDashboard() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <div className="border-border bg-card rounded-lg border p-6 shadow-sm">
+        <div className="border-border bg-card rounded-lg border p-4 shadow-sm sm:p-6">
           <div className="flex items-center gap-3">
             <Warehouse className="text-primary size-5" aria-hidden="true" />
             <h2 className="text-foreground text-lg font-semibold">Warehouse Activity</h2>
           </div>
-          <div className="border-border mt-6 overflow-hidden rounded-md border">
-            <div className="bg-muted text-muted-foreground grid grid-cols-3 px-4 py-3 text-xs font-semibold uppercase">
+          <div className="border-border mt-6 overflow-x-auto rounded-md border">
+            <div className="bg-muted text-muted-foreground grid min-w-[620px] grid-cols-3 px-4 py-3 text-xs font-semibold uppercase">
               <span>Workflow</span>
               <span>Status</span>
               <span>Next action</span>
             </div>
             {workflows.map(([name, status, action]) => (
-              <div key={name} className="border-border grid grid-cols-3 border-t px-4 py-4 text-sm">
+              <div
+                key={name}
+                className="border-border grid min-w-[620px] grid-cols-3 border-t px-4 py-4 text-sm"
+              >
                 <span className="text-foreground font-medium">{name}</span>
                 <span className="text-muted-foreground">{status}</span>
                 <span className="text-muted-foreground">{action}</span>
@@ -59,21 +62,21 @@ export function OperationsDashboard() {
           </div>
         </div>
 
-        <div className="border-border bg-card rounded-lg border p-6 shadow-sm">
+        <div className="border-border bg-card rounded-lg border p-4 shadow-sm sm:p-6">
           <div className="flex items-center gap-3">
             <ClipboardCheck className="text-primary size-5" aria-hidden="true" />
             <h2 className="text-foreground text-lg font-semibold">Controls Ready</h2>
           </div>
           <dl className="mt-6 space-y-4 text-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <dt className="text-muted-foreground">Tenant scoped API</dt>
               <dd className="text-foreground font-medium">Enabled</dd>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <dt className="text-muted-foreground">RBAC route group</dt>
               <dd className="text-foreground font-medium">Prepared</dd>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <dt className="text-muted-foreground">RTK Query cache tags</dt>
               <dd className="text-foreground font-medium">Configured</dd>
             </div>

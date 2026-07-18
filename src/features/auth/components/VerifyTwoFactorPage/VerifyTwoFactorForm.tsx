@@ -81,13 +81,13 @@ export function VerifyTwoFactorForm({
   }
 
   return (
-    <div className="flex min-h-dvh">
+    <div className="flex min-h-dvh min-w-0">
       <aside className="sticky top-0 hidden h-dvh flex-shrink-0 lg:block lg:w-[42%] xl:w-[45%]">
         <BenefitsPanel />
       </aside>
 
-      <div className="bg-background flex flex-1 flex-col">
-        <header className="flex items-center justify-between px-8 py-5 lg:px-12">
+      <div className="bg-background flex min-w-0 flex-1 flex-col">
+        <header className="flex items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:px-12">
           <Logo className="lg:hidden" />
           <button
             type="button"
@@ -99,7 +99,7 @@ export function VerifyTwoFactorForm({
           </button>
         </header>
 
-        <div className="flex flex-1 items-center justify-center px-8 py-12 lg:px-12 xl:px-16">
+        <div className="flex min-w-0 flex-1 items-center justify-center px-4 py-10 sm:px-6 lg:px-12 xl:px-16">
           <div className="w-full max-w-md">
             <header className="mb-8">
               <p className="text-muted-foreground mb-2 text-[11px] font-semibold tracking-[0.1em] uppercase">

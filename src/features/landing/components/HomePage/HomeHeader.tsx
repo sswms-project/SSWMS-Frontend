@@ -13,8 +13,8 @@ const sectionLinks = [
 export function HomeHeader() {
   return (
     <header className="border-border/60 bg-background/80 sticky top-0 z-50 border-b backdrop-blur-md">
-      <div className="mx-auto flex h-14 w-full max-w-(--container-landing) items-center justify-between px-4 md:px-6">
-        <Logo />
+      <div className="mx-auto flex h-14 w-full max-w-(--container-landing) items-center justify-between gap-3 px-4 md:px-6">
+        <Logo className="min-w-0" />
 
         <nav
           className="hidden items-center gap-1 md:flex"
@@ -32,10 +32,13 @@ export function HomeHeader() {
         </nav>
 
         <nav className="flex items-center gap-2" aria-label="Tài khoản">
-          <Button variant="ghost" asChild>
+          <Button variant="ghost" className="hidden sm:inline-flex" asChild>
             <Link href={APP_ROUTES.auth.login}>Đăng nhập</Link>
           </Button>
-          <Button className="rounded-full font-semibold" asChild>
+          <Button
+            className="h-9 rounded-full px-3 text-xs font-semibold sm:h-10 sm:px-4 sm:text-sm"
+            asChild
+          >
             <Link href={APP_ROUTES.auth.register}>Dùng thử miễn phí</Link>
           </Button>
         </nav>
