@@ -219,6 +219,15 @@
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
+  /* Sidebar: fixed dark — does NOT flip in dark mode */
+  --color-sidebar: #1c2b20;
+  --color-sidebar-foreground: rgba(255, 255, 255, 0.72);
+  --color-sidebar-primary: #8df06c;
+  --color-sidebar-primary-foreground: #1c2b20;
+  --color-sidebar-accent: color-mix(in srgb, #8df06c 15%, #1c2b20);
+  --color-sidebar-accent-foreground: #8df06c;
+  --color-sidebar-border: color-mix(in srgb, white 7%, #1c2b20);
+  --color-sidebar-ring: #8df06c;
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --font-logo: var(--font-baloo);
@@ -227,6 +236,50 @@
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
+}
+
+.dark {
+  --surface: #111b13;
+  --surface-dim: #0d1610;
+  --surface-bright: #1e2e20;
+  --surface-container-lowest: #0d1610;
+  --surface-container-low: #162119;
+  --surface-container: #1c2a1e;
+  --surface-container-high: #223324;
+  --surface-container-highest: #283c2a;
+  --on-surface: #ddf0d6;
+  --on-surface-variant: #a0c49a;
+  --inverse-surface: #ddf0d6;
+  --inverse-on-surface: #1c2a1e;
+  --outline: #6a9e6d;
+  --outline-variant: #2e4d30;
+  --primary: #7de86a;
+  --on-primary: #0e2e0a;
+  --primary-container: #1a4a16;
+  --on-primary-container: #b0f0a0;
+  --secondary: #96c494;
+  --on-secondary: #0d2e0d;
+  --secondary-container: #1e3d1e;
+  --on-secondary-container: #b0d8ae;
+  --background: #111b13;
+  --foreground: #ddf0d6;
+  --surface-variant: #1c2a1e;
+  /* Cards elevated above bg for visual hierarchy */
+  --card: #1c2a1e;
+  --card-foreground: var(--on-surface);
+  --popover: #1c2a1e;
+  --popover-foreground: var(--on-surface);
+  --primary-foreground: var(--on-primary);
+  --secondary-foreground: var(--on-secondary);
+  --muted: #1c2a1e;
+  --muted-foreground: var(--on-surface-variant);
+  --accent: var(--secondary-container);
+  --accent-foreground: var(--on-secondary-container);
+  --destructive: #ff6b6b;
+  --destructive-foreground: #1a0000;
+  --border: #2e4d30;
+  --input: #2e4d30;
+  --ring: var(--primary);
 }
 
 body {

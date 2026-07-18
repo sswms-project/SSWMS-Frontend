@@ -2,17 +2,17 @@
 
 import { useMemo, useState } from 'react'
 import type { DateRange } from 'react-day-picker'
-import { DashboardHeader } from '../DashboardHeader'
-import { MetricCardGrid } from '../MetricCardGrid'
-import { QuickActionsBar } from '../QuickActionsBar'
+import { DashboardHeader } from '../shared/DashboardHeader'
+import { MetricCardGrid } from '../shared/MetricCardGrid'
+import { QuickActionsBar } from '../shared/QuickActionsBar'
 import { WarehouseCapacitySection } from './WarehouseCapacitySection'
-import { DateRangeFilter } from '../DateRangeFilter'
-import { LogisticsFluxChart } from '../LogisticsFluxChart'
+import { DateRangeFilter } from '../shared/DateRangeFilter'
+import { LogisticsFluxChart } from '../shared/LogisticsFluxChart'
 import { WarehouseRevenueDonutChart } from './WarehouseRevenueDonutChart'
-import { RecentOperationsTable } from '../RecentOperationsTable'
-import { AlertCard } from '../AlertCard'
-import { LowStockTable } from '../LowStockTable'
-import { FadeIn } from '../FadeIn'
+import { RecentOperationsTable } from '../shared/RecentOperationsTable'
+import { AlertCard } from '../shared/AlertCard'
+import { LowStockTable } from '../shared/LowStockTable'
+import { FadeIn } from '../shared/FadeIn'
 import {
   tenantOwnerMetrics,
   tenantOwnerQuickActions,

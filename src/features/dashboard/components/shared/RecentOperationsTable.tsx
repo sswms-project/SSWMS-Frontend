@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Package, Shuffle, AlertTriangle, ClipboardCheck } from 'lucide-react'
-import type { RecentOperation } from '../types'
+import type { RecentOperation } from '../../types'
 
 interface RecentOperationsTableProps {
   operations: RecentOperation[]

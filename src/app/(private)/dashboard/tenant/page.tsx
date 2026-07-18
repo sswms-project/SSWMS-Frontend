@@ -1,4 +1,4 @@
-import { TenantOwnerDashboardPage } from '@/features/homepage/pages/TenantOwnerDashboardPage'
+import { TenantOwnerDashboardPage } from '@/features/dashboard/pages/TenantOwnerDashboardPage'
 
 export default function Page() {
   return <TenantOwnerDashboardPage />

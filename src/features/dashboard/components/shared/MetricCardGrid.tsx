@@ -1,4 +1,4 @@
-import type { DashboardMetric } from '../types'
+import type { DashboardMetric } from '../../types'
 import { FadeIn } from './FadeIn'
 import { MetricCard } from './MetricCard'
 
