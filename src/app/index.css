@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 @keyframes shake {
   0%,
@@ -84,6 +85,14 @@
   /* Data-viz series colors, validated for CVD separation and contrast */
   --chart-1: #166534;
   --chart-2: #65a30d;
+  --chart-3: var(--secondary);
+  --chart-positive: var(--chart-1);
+  --chart-negative: var(--error);
+
+  /* Tonal green ramp — same hue family for harmonious part-to-whole charts (revenue breakdowns) */
+  --chart-tonal-1: #1f4a1c;
+  --chart-tonal-2: #2e5a2a;
+  --chart-tonal-3: #5c8f52;
 
   --card: var(--surface-container-lowest);
   --card-foreground: var(--on-surface);
@@ -189,6 +198,12 @@
   --color-on-tertiary-fixed: var(--on-tertiary-fixed);
   --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
   --color-surface-variant: var(--surface-variant);
+  --color-chart-3: var(--chart-3);
+  --color-chart-positive: var(--chart-positive);
+  --color-chart-negative: var(--chart-negative);
+  --color-chart-tonal-1: var(--chart-tonal-1);
+  --color-chart-tonal-2: var(--chart-tonal-2);
+  --color-chart-tonal-3: var(--chart-tonal-3);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);

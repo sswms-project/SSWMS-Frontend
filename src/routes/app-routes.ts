@@ -9,6 +9,11 @@ export const APP_ROUTES = {
     verify2fa: '/auth/verify-2fa',
   },
   dashboard: '/dashboard',
+  dashboardByRole: {
+    tenant: '/dashboard/tenant',
+    manager: '/dashboard/manager',
+    staff: '/dashboard/staff',
+  },
   warehouses: '/warehouses',
   inventory: '/inventory',
   orders: '/orders',
