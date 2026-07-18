@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
+import { API_ENDPOINTS } from '@/routes/api-endpoints'
 import type { ApiErrorResponse } from '@/types/api'
 
 type PendingRequest = {
@@ -77,6 +78,18 @@ const redirectToLogin = (): void => {
   window.location.href = '/login'
 }
 
+// ── Pre-authentication endpoints — never trigger refresh-token retry ───
+// A stale refresh_token (lives 14 days) left over in localStorage from a
+// previous session must not be silently used to "resurrect" an unrelated
+// session when login/verify-2fa itself returns 401. refreshToken already
+// bypasses this interceptor (uses the raw `axios` instance, not
+// `axiosClient`) — listed here defensively in case that ever changes.
+const AUTH_401_PASSTHROUGH_ENDPOINTS: string[] = [
+  API_ENDPOINTS.auth.login,
+  API_ENDPOINTS.auth.verify2fa,
+  API_ENDPOINTS.auth.refreshToken,
+]
+
 // ── Token refresh with queuing ─────────────────────────────────
 
 let isRefreshing = false
@@ -130,8 +143,16 @@ axiosClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean }
+    const isPassthroughEndpoint = AUTH_401_PASSTHROUGH_ENDPOINTS.some(
+      (endpoint) => originalRequest?.url === endpoint
+    )
 
-    if (error.response?.status === 401 && !originalRequest?._retry && getRefreshToken()) {
+    if (
+      error.response?.status === 401 &&
+      !isPassthroughEndpoint &&
+      !originalRequest?._retry &&
+      getRefreshToken()
+    ) {
       originalRequest._retry = true
       try {
         const newToken = await handleTokenRefresh()

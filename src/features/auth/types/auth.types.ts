@@ -15,11 +15,16 @@ export interface LoginRequestDto {
 }
 
 export interface LoginResponseDto {
-  accessToken: string
-  refreshToken: string
+  accessToken: string | null
+  refreshToken: string | null
   expiresIn: number
   requires2FA: boolean
   tempToken: string | null
+}
+
+export interface Verify2FARequestDto {
+  tempToken: string
+  otp: string
 }
 
 export interface RegisterRequestDto {
@@ -49,3 +54,17 @@ export interface ResetPasswordRequestDto {
 }
 
 export type ResetPasswordResponseDto = unknown
+
+export interface UserProfileResponse {
+  id: string
+  tenantId: string
+  fullName: string
+  email: string
+  phone: string | null
+  role: string | null
+  status: string
+  lastLoginAt: string | null
+  emailVerified: boolean
+  phoneVerified: boolean
+  isTwoFactorEnabled: boolean
+}
