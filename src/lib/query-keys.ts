@@ -1,6 +1,9 @@
 import type { QueryInfo } from '@/types/api'
 
 export const queryKeys = {
+  auth: {
+    me: ['auth', 'me'] as const,
+  },
   warehouses: {
     all: ['warehouses'] as const,
     list: (params?: QueryInfo) => ['warehouses', 'list', params] as const,
