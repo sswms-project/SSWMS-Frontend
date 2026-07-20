@@ -1,6 +1,6 @@
 import type { Route } from 'next'
 import Link from 'next/link'
-import { Boxes, LayoutDashboard, Package, Truck, Warehouse } from 'lucide-react'
+import { Boxes, LayoutDashboard, Package, Truck, UserRound, Warehouse } from 'lucide-react'
 import { Logo } from '@/components/Logo'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { APP_ROUTES } from '@/routes/app-routes'
@@ -8,6 +8,7 @@ import { AdminNav } from './AdminNav'
 
 const navigation = [
   { href: APP_ROUTES.dashboard, label: 'Dashboard', icon: LayoutDashboard },
+  { href: APP_ROUTES.profile, label: 'Profile', icon: UserRound },
   { href: APP_ROUTES.warehouses, label: 'Warehouses', icon: Warehouse },
   { href: APP_ROUTES.inventory, label: 'Inventory', icon: Boxes },
   { href: APP_ROUTES.orders, label: 'Orders', icon: Package },
